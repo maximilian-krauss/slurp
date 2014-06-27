@@ -1,0 +1,19 @@
+{
+  "name": "slurp",
+  "version": "0.0.1",
+  "description": "Stream all the things",
+  "main": "./app/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/maximilian-krauss/slurp.git"
+  },
+  "author": "Maximilian Krauss <max@krauss.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maximilian-krauss/slurp/issues"
+  },
+  "homepage": "https://github.com/maximilian-krauss/slurp"
+}

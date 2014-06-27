@@ -1,0 +1,18 @@
+{
+  "name": "slurp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/maximilian-krauss/slurp",
+  "authors": [
+    "Maximilian Krauss <max@krauss.io>"
+  ],
+  "description": "Stream all the things",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
