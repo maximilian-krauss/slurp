@@ -27,5 +27,5 @@ bower_components
 
 # ---
 
-./app
-./public
+/app
+/public

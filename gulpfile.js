@@ -1,11 +1,17 @@
-var gulp  				= require('gulp'),
+var _             = require('lodash'),
+    gulp  				= require('gulp'),
     gutil					= require('gulp-util'),
 		iced					= require('gulp-iced'),
 		concat				= require('gulp-concat'),
 		clean					= require('gulp-clean'),
     stylus        = require('gulp-stylus'),
+    path          = require('path'),
+    bowerPath     = 'bower_components',
 		thirdPartyJs	= [
-
+      'jquery/dist/jquery.min.js',
+      'angular/angular.min.js',
+      'angular-route/angular-route.min.js',
+      'lodash/dist/lodash.min.js'
 		],
 		thirdPartyCss	= [
 
