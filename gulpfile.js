@@ -6,7 +6,7 @@ var _             = require('lodash'),
 		clean					= require('gulp-clean'),
     stylus        = require('gulp-stylus'),
     path          = require('path'),
-    bowerPath     = 'bower_components',
+    bowerPath     = './bower_components',
 		thirdPartyJs	= [
       'jquery/dist/jquery.min.js',
       'angular/angular.min.js',
@@ -17,6 +17,10 @@ var _             = require('lodash'),
 
 		],
 		directories		= {
+      clean: {
+        server: './app/**/*.js',
+        client: './public/**/*'
+      },
 			server: {
 				iced: { src: './src/server/**/*.iced', dest: './app' }
 			},
@@ -32,22 +36,22 @@ var _             = require('lodash'),
 gulp.task('clean', [ 'clean:server', 'clean:client' ]);
 
 gulp.task('clean:server', function() {
-	gulp.src(directories.server.iced.dest)
-		.pipe(clean({ read: false, force: true }));
+	gulp.src(directories.clean.server)
+		.pipe(clean());
 });
 
 gulp.task('clean:client', function() {
 	gulp.src(directories.client.iced.dest)
-		.pipe(clean({ read: false, force: true }));
+		.pipe(clean());
 
 	gulp.src(directories.client.styles.dest)
-		.pipe(clean({ read: false, force: true }));
+		.pipe(clean());
 
 	gulp.src(directories.client.images.dest)
-		.pipe(clean({ read: false, force: true }));
+		.pipe(clean());
 
   gulp.src(directories.client.html.dest)
-    .pipe(clean({ read: false, force: true }));
+    .pipe(clean());
 });
 
 // Server
@@ -64,10 +68,18 @@ gulp.task('client:compile', function() {
     .pipe(concat('app.js'))
     .pipe(gulp.dest(directories.client.iced.dest));
 
+  gulp.src(_(thirdPartyJs).chain().map(function(s) { return [ bowerPath, s ].join('/') }).value())
+    .pipe(concat('vendor.js'))
+    .pipe(gulp.dest(directories.client.iced.dest));
+
   gulp.src(directories.client.styles.src)
     .pipe(stylus({set: ['compress']}))
     .pipe(concat('app.css'))
     .pipe(gulp.dest(directories.client.styles.dest));
+
+  /*gulp.src(_(thirdPartyCss).chain().map(function(s) { return [ bowerPath, s ].join('/') }).value())
+    .pipe(concat('vendor.css'))
+    .pipe(gulp.dest(directories.client.styles.dest));*/
 
   gulp.src(directories.client.html.src)
     .pipe(gulp.dest(directories.client.html.dest));
