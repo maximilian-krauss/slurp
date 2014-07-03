@@ -8,9 +8,10 @@ bcrypt 			= require "bcrypt"
 User = new Schema
 	uid:  				type: String, required: true, unique: true
 	username: 		type: String, required: true, unique: true
+	email: 				type: String, required: true, unique: true
 	password: 		type: String, required: true
 	firstName: 		type: String, default: ''
-	lastName: 		type: String
+	lastName: 		type: String, default: ''
 
 User.pre "save", (next) ->
 	user = this
