@@ -18,7 +18,7 @@ favicon				= require "serve-favicon"
 app						= express()
 
 
-app.set "port", process.env.port or 3000
+app.set "port", process.env.PORT or 3000
 app.use logger { format: 'dev' }
 app.use compress()
 #app.use favicon path.join __dirname, "../public/images/favicon.ico"
