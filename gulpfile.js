@@ -6,6 +6,7 @@ var _             = require('lodash'),
 		clean					= require('gulp-clean'),
     stylus        = require('gulp-stylus'),
     path          = require('path'),
+    bower         = require('gulp-bower'),
     bowerPath     = './bower_components',
 		thirdPartyJs	= [
       'jquery/dist/jquery.min.js',
@@ -29,7 +30,7 @@ var _             = require('lodash'),
 				iced: { src: ['./src/client/app/app.iced', './src/client/app/**/*.iced'], dest: './public/js' },
 				styles: { src: './src/client/styles/*.styl', dest: './public/css' },
 				images: { src: './src/client/images/**/*', dest: './public/images' },
-        html: { src: '/src/client/html/**/*.html', dest: './public/html' }
+        html: { src: './src/client/html/**/*.html', dest: './public/html' }
 			}
 		};
 
@@ -53,6 +54,11 @@ gulp.task('clean:client', function() {
 
   gulp.src(directories.client.html.dest)
     .pipe(clean());
+});
+
+// Bower
+gulp.task('bower', function() {
+  return bower();
 });
 
 // Server
@@ -91,4 +97,6 @@ gulp.task('client:compile', function() {
 
 
 gulp.task('default', [ 'server:compile', 'client:compile' ]);
-gulp.task('production', [ 'clean', 'default' ]);
+gulp.task('production', [ 'bower' ], function() {
+  gulp.start('default');
+});

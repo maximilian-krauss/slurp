@@ -24,5 +24,5 @@ mdb.on "close", ->
 	_connect()
 
 
-module.exports.userModel = mongoose.model "User", require("user").model
-module.exports.postModel = mongoose.model "Post", require("post").model
+module.exports.userModel = mongoose.model "User", require("./user").model
+module.exports.postModel = mongoose.model "Post", require("./post").model
