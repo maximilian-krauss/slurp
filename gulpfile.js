@@ -11,7 +11,8 @@ var _             = require('lodash'),
       'jquery/dist/jquery.min.js',
       'angular/angular.min.js',
       'angular-route/angular-route.min.js',
-      'lodash/dist/lodash.min.js'
+      'lodash/dist/lodash.min.js',
+      'angular-classy/angular-classy.min.js'
 		],
 		thirdPartyCss	= [
 
