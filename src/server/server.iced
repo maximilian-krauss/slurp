@@ -17,7 +17,6 @@ pkg						= require "../package"
 favicon				= require "serve-favicon"
 app						= express()
 
-
 app.set "port", process.env.PORT or 3000
 app.use logger { format: 'dev' }
 app.use compress()

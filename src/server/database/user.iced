@@ -3,7 +3,7 @@ mongoose		= require "mongoose"
 Schema			= mongoose.Schema
 saltFactor	= 10
 bcrypt 			= require "bcrypt"
-
+idgen			  = require "./id-generator"
 
 User = new Schema
 	uid:  				type: String, required: true, unique: true
@@ -12,9 +12,16 @@ User = new Schema
 	password: 		type: String, required: true
 	firstName: 		type: String, default: ''
 	lastName: 		type: String, default: ''
+	createdAt: 		type: Date, default: Date.now
+	updatedAt: 		type: Date, default: Date.now
+	isActive: 		type: Boolean, default: false
 
 User.pre "save", (next) ->
 	user = this
+
+	if(not user.uid?)
+		user.uid = idgen.compute()
+
 	if(not user.isModified("password"))
     return next()
 
