@@ -25,7 +25,7 @@ app.use responseTime()
 app.use bodyParser.json()
 app.use bodyParser.urlencoded extended: true
 app.use cookieParser "TODO: replace me with some more random string"
-app.use session { secret: "TODO: replace me again with more randomness", key: "session", cookie: { maxAge: 86400000 } } # <- 1d
+app.use session { resave: true, saveUninitialized: true, secret: "TODO: replace me again with more randomness", key: "session", cookie: { maxAge: 86400000 } } # <- 1d
 app.use passport.initialize()
 app.use passport.session()
 
