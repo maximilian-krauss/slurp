@@ -1,4 +1,5 @@
 var _             = require('lodash'),
+    crypto        = require('crypto'),
     gulp  				= require('gulp'),
     gutil					= require('gulp-util'),
 		iced					= require('gulp-iced'),
@@ -8,7 +9,6 @@ var _             = require('lodash'),
     path          = require('path'),
     bower         = require('gulp-bower'),
     htmlreplace   = require('gulp-html-replace'),
-    idgen         = require('./app/database/id-generator'),
     bowerPath     = './bower_components',
 		thirdPartyJs	= [
       'jquery/dist/jquery.min.js',
@@ -35,6 +35,11 @@ var _             = require('lodash'),
         html: { src: './src/client/html/**/*.html', dest: './public/html' }
 			}
 		};
+
+var idgen = function() {
+  var seed = crypto.randomBytes(20);
+  return crypto.createHash('sha1').update(seed).digest('hex');
+};
 
 // Clean
 gulp.task('clean', [ 'clean:server', 'clean:client' ]);
@@ -63,7 +68,7 @@ gulp.task('server:compile', function() {
 
 // Client
 gulp.task('client:compile', function() {
-  var hash = idgen.compute(),
+  var hash = idgen(),
       appjs = 'app-' + hash + '.js',
       vendorjs = 'vendor-' + hash + '.js',
       appcss = 'app-' + hash + '.css';
