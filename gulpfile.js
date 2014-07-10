@@ -7,6 +7,8 @@ var _             = require('lodash'),
     stylus        = require('gulp-stylus'),
     path          = require('path'),
     bower         = require('gulp-bower'),
+    htmlreplace   = require('gulp-html-replace'),
+    idgen         = require('./app/database/id-generator'),
     bowerPath     = './bower_components',
 		thirdPartyJs	= [
       'jquery/dist/jquery.min.js',
@@ -21,7 +23,7 @@ var _             = require('lodash'),
 		directories		= {
       clean: {
         server: './app/**/*.js',
-        client: './public/**/*'
+        client: ['./public/**/*.js', './public/**/*.css']
       },
 			server: {
 				iced: { src: './src/server/**/*.iced', dest: './app' }
@@ -43,17 +45,8 @@ gulp.task('clean:server', function() {
 });
 
 gulp.task('clean:client', function() {
-	gulp.src(directories.client.iced.dest)
+	gulp.src(directories.clean.client)
 		.pipe(clean());
-
-	gulp.src(directories.client.styles.dest)
-		.pipe(clean());
-
-	gulp.src(directories.client.images.dest)
-		.pipe(clean());
-
-  gulp.src(directories.client.html.dest)
-    .pipe(clean());
 });
 
 // Bower
@@ -70,13 +63,21 @@ gulp.task('server:compile', function() {
 
 // Client
 gulp.task('client:compile', function() {
+  var hash = idgen.compute(),
+      appjs = 'app-' + hash + '.js',
+      vendorjs = 'vendor-' + hash + '.js',
+      appcss = 'app-' + hash + '.css';
+
+  gulp.src(directories.clean.client)
+    .pipe(clean());
+
   gulp.src(directories.client.iced.src)
     .pipe(iced({ bare: false, runtime: 'window' }))
-    .pipe(concat('app.js'))
+    .pipe(concat(appjs))
     .pipe(gulp.dest(directories.client.iced.dest));
 
   gulp.src(_(thirdPartyJs).chain().map(function(s) { return [ bowerPath, s ].join('/') }).value())
-    .pipe(concat('vendor.js'))
+    .pipe(concat(vendorjs))
     .pipe(gulp.dest(directories.client.iced.dest));
 
   gulp.src(directories.client.styles.src)
@@ -89,6 +90,10 @@ gulp.task('client:compile', function() {
     .pipe(gulp.dest(directories.client.styles.dest));*/
 
   gulp.src(directories.client.html.src)
+    .pipe(htmlreplace({
+      'css': '/static/css/' + appcss,
+      'js': [ '/static/js/' + vendorjs, '/static/js/' + appjs ]
+    }))
     .pipe(gulp.dest(directories.client.html.dest));
 
   gulp.src(directories.client.images.src)

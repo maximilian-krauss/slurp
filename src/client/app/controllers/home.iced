@@ -1,4 +1,4 @@
-app.classy.controller
+window.app.classy.controller
 	name: "HomeCtrl"
 	inject: [ "$scope" ]
 	init: ->

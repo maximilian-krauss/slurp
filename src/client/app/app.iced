@@ -1,9 +1,12 @@
-app = angular.module "app", [
+window.app = angular.module "app", [
 		"ngRoute"
 		"classy"
 	]
 
-window.app = app
-
 app.config ($routeProvider, $locationProvider) ->
+	templateUri = "/static/html/views"
 	$locationProvider.html5Mode true
+
+
+	$routeProvider
+		.when "/", controller: "HomeCtrl", templateUrl: [templateUri, "home.html"].join("/")
