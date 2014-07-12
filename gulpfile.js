@@ -18,7 +18,7 @@ var _             = require('lodash'),
       'angular-classy/angular-classy.min.js'
 		],
 		thirdPartyCss	= [
-
+      'normalize.css/normalize.css'
 		],
 		directories		= {
       clean: {
@@ -71,7 +71,8 @@ gulp.task('client:compile', function() {
   var hash = idgen(),
       appjs = 'app-' + hash + '.js',
       vendorjs = 'vendor-' + hash + '.js',
-      appcss = 'app-' + hash + '.css';
+      appcss = 'app-' + hash + '.css',
+      vendorcss = 'vendor-' + hash + '.css';
 
   gulp.src(directories.clean.client)
     .pipe(clean());
@@ -87,16 +88,16 @@ gulp.task('client:compile', function() {
 
   gulp.src(directories.client.styles.src)
     .pipe(stylus({set: ['compress']}))
-    .pipe(concat('app.css'))
+    .pipe(concat(appcss))
     .pipe(gulp.dest(directories.client.styles.dest));
 
-  /*gulp.src(_(thirdPartyCss).chain().map(function(s) { return [ bowerPath, s ].join('/') }).value())
-    .pipe(concat('vendor.css'))
-    .pipe(gulp.dest(directories.client.styles.dest));*/
+  gulp.src(_(thirdPartyCss).chain().map(function(s) { return [ bowerPath, s ].join('/') }).value())
+    .pipe(concat(vendorcss))
+    .pipe(gulp.dest(directories.client.styles.dest));
 
   gulp.src(directories.client.html.src)
     .pipe(htmlreplace({
-      'css': '/static/css/' + appcss,
+      'css': [ '/static/css/' + vendorcss, '/static/css/' + appcss ],
       'js': [ '/static/js/' + vendorjs, '/static/js/' + appjs ]
     }))
     .pipe(gulp.dest(directories.client.html.dest));
