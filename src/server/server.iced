@@ -15,6 +15,7 @@ route					= require "./route"
 responseTime	= require "response-time"
 pkg						= require "../package"
 favicon				= require "serve-favicon"
+envi          = require "./environment-helper"
 app						= express()
 
 app.set "port", process.env.PORT or 3000

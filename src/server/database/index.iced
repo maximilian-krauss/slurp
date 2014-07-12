@@ -1,9 +1,6 @@
 _						= require "lodash"
 mongoose		= require "mongoose"
-
-MONGO_DB_USER       = process.env["MONGO_DB_USER"]
-MONGO_DB_PASSWORD   = process.env["MONGO_DB_PASSWORD"]
-MONGO_DB_SERVER     = process.env["MONGO_DB_SERVER"]
+envi 				= require "../environment-helper"
 
 options             =
 	server:
@@ -11,7 +8,7 @@ options             =
 			keepAlive: 1
 
 _connect = ->
-	mongoose.connect "mongodb://#{MONGO_DB_USER}:#{MONGO_DB_PASSWORD}@#{MONGO_DB_SERVER}", options
+	mongoose.connect "mongodb://#{envi.mongo.user}:#{envi.mongo.password}@#{envi.mongo.server}", options
 
 _connect()
 
