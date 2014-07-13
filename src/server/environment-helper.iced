@@ -12,3 +12,4 @@ module.exports =
 	server:
 		cookieSecret: process.env["SERVER_COOKIE_SECRET"]
 		sessionSecret: process.env["SERVER_SESSION_SECRET"]
+		token: process.env["SERVER_AUTH_TOKEN"]
