@@ -11,7 +11,18 @@
 		<!-- endbuild -->
 	</head>
 	<body>
-		<p>hi</p>
-		<div ng-view></div>
+		<div class="container-fluid">
+			<div class="col-md-12">
+				<p>This is for the header</p>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2>View</h2>
+					<div ng-view></div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

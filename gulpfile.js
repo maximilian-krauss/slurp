@@ -18,7 +18,9 @@ var _             = require('lodash'),
       'angular-classy/angular-classy.min.js'
 		],
 		thirdPartyCss	= [
-      'normalize.css/normalize.css'
+      'normalize.css/normalize.css',
+      'bootstrap/dist/css/bootstrap.min.css',
+      'bootstrap/dist/css/bootstrap-theme.min.css'
 		],
 		directories		= {
       clean: {
