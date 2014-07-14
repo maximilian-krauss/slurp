@@ -10,23 +10,18 @@ eRes				= require "../../error-response"
 		username: string
 		password: string
 		email: string
-		authToken: string
 ###
 
 module.exports = (req, res) ->
-	storedAuthToken = envi.server.token
-	sentAuthToken = req.body.authToken
+	user = new db.userModel
+		username: req.body.username
+		password: req.body.password
+		email: req.body.email
 
-	if(storedAuthToken? and storedAuthToken is sentAuthToken)
-		user = new db.userModel
-			username: req.body.username
-			password: req.body.password
-			email: req.body.email
+	await user.save defer err
+	if(err)
+		return eRes.send res, 500, err.message
 
-		await user.save defer err
-		if(err)
-			return eRes.send res, 500, err.message
-
-		return res.send 201
+	res.send 201
 
 	eRes.send res, 400
