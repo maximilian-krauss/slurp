@@ -1,4 +1,4 @@
-window.app = angular.module "app", [
+app = angular.module "app", [
 		"ngRoute"
 		"classy"
 	]

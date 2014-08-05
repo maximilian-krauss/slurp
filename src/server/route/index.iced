@@ -13,7 +13,7 @@ _ensureAuthenticated = (req, res, next) ->
 
 _ensureAuthenticatedByToken = (req, res, next) ->
 	storedToken = envi.server.token
-	sentToken = req.get("X-Auth-Token")
+	sentToken = req.get "X-Auth-Token"
 
 	if(storedToken? and storedToken is sentToken)
 		return next()
@@ -28,9 +28,11 @@ module.exports.config = (router) ->
 		.post _ensureAuthenticatedByToken, userCtrl.post
 
 	# Post routes
-	router.route "#{apiBaseRoute}post"
+	router.route "#{apiBaseRoute}posts/:id"
 		.get postCtrl.get
-		.post _ensureAuthenticated, postCtrl.post
+
+	router.route "#{apiBaseRoute}posts"
+		.post postCtrl.post
 
 	# Handle default route and let angular do the work
 	router.route "*"

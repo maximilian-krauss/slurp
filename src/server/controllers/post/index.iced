@@ -1,7 +1,7 @@
 ###
 	Post API Controller
 	---
-	Handles calls to /api/posts
+	Handles calls to /api/posts and /api/posts/:id
 ###
 
 module.exports =
