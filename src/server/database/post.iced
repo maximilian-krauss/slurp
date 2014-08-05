@@ -4,11 +4,13 @@ Schema		= mongoose.Schema
 idgen			= require "./id-generator"
 
 Post = new Schema
-	uid: 				type: String, required: true, unique: true
-	title: 			type: String, required: true
-	date: 			type: Date, default: Date.now
-	content: 		type: String, required: true
-	type: 			type: String, required: true
+	uid: 					type: String, unique: true
+	title: 				type: String, required: true
+	date: 				type: Date, default: Date.now
+	content: 			type: String, required: true
+	rendered: 		type: String
+	type: 				type: String, required: true
+	description: 	type: String
 
 Post.pre "save", (next) ->
 	post = this

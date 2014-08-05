@@ -5,6 +5,7 @@ eRes				= require "../../error-response"
 ###
 	[POST] User API Controller: Creates a new user
 	Content-Type: json
+	Auth: token
 	---
 	Request Body:
 		username: string
