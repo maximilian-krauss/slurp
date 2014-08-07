@@ -32,7 +32,7 @@ var _             = require('lodash'),
 			},
 			client: {
 				iced: { src: ['./src/client/app/app.iced', './src/client/app/**/*.iced'], dest: './public/js' },
-				styles: { src: './src/client/styles/*.styl', dest: './public/css' },
+				styles: { src: ['./src/client/styles/app.styl', './src/client/styles/*.styl'], dest: './public/css' },
 				images: { src: './src/client/images/**/*', dest: './public/images' },
         html: { src: './src/client/html/**/*.html', dest: './public/html' }
 			}
