@@ -37,6 +37,6 @@ module.exports.config = (router) ->
 	# Handle default route and let angular do the work
 	router.route "*"
 			.get (req, res) ->
-				res.sendfile path.join appRoot, "..", "public", "html", "index.html"
+				res.sendFile path.join appRoot, "..", "public", "html", "index.html"
 
 	return router

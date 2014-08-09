@@ -42,7 +42,7 @@ passport.use new LocalStrategy (username, password, done) ->
 
 
 app.set "port", process.env.PORT or 3000
-app.use logger { format: 'dev' }
+app.use logger "dev", {}
 app.use compress()
 #app.use favicon path.join __dirname, "../public/images/favicon.ico"
 app.use responseTime()
