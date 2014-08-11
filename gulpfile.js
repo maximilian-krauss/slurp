@@ -113,3 +113,8 @@ gulp.task('default', [ 'server:compile', 'client:compile' ]);
 gulp.task('production', [ 'bower' ], function() {
   gulp.start('default');
 });
+
+// Development
+gulp.task('dev:client', function() {
+  gulp.watch('./src/client/**/*', ['default']);
+});
