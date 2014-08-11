@@ -11,11 +11,14 @@
 		<!-- endbuild -->
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="col-md-12">
-				<p>This is for the header</p>
+		<header class="container-fluid" ng-controller="HeaderCtrl" ng-style="heading">
+			<div class="row-fluid">
+				<div class="col-md-6 col-md-offset-3 title">
+					<h2><a href="/" ng-bind="title"></a></h2>
+					<h4 ng-bind="description"></h4>
+				</div>
 			</div>
-		</div>
+		</header>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
