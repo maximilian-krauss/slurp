@@ -9,6 +9,7 @@ var _             = require('lodash'),
     path          = require('path'),
     bower         = require('gulp-bower'),
     htmlreplace   = require('gulp-html-replace'),
+    htmlmin       = require('gulp-htmlmin'),
     bowerPath     = './bower_components',
 		thirdPartyJs	= [
       'jquery/dist/jquery.min.js',
@@ -103,6 +104,7 @@ gulp.task('client:compile', function() {
       'css': [ '/static/css/' + vendorcss, '/static/css/' + appcss ],
       'js': [ '/static/js/' + vendorjs, '/static/js/' + appjs ]
     }))
+    .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest(directories.client.html.dest));
 
   gulp.src(directories.client.images.src)
