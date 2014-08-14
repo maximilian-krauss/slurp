@@ -1,9 +1,10 @@
-path				= require "path"
-appRoot			= path.dirname require.main.filename
-userCtrl		= require "../controllers/user"
-postCtrl		= require "../controllers/post"
-eRes				= require "../error-response"
-envi 				= require "../environment-helper"
+path					= require "path"
+appRoot				= path.dirname require.main.filename
+userCtrl			= require "../controllers/user"
+postCtrl			= require "../controllers/post"
+eRes					= require "../error-response"
+envi 					= require "../environment-helper"
+apiBaseRoute	= "/api/0/"
 
 _ensureAuthenticated = (req, res, next) ->
 	if(req.isAuthenticated())
@@ -20,9 +21,9 @@ _ensureAuthenticatedByToken = (req, res, next) ->
 
 	eRes.send res, 400, "Invalid token dude"
 
-module.exports.config = (router) ->
-	apiBaseRoute = "/api/0/"
+module.exports.apiBaseRoute = apiBaseRoute
 
+module.exports.config = (router) ->
 	# User routes
 	router.route "#{apiBaseRoute}user"
 		.post _ensureAuthenticatedByToken, userCtrl.post
