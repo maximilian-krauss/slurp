@@ -1,6 +1,7 @@
 app = angular.module "app", [
 		"ngRoute"
 		"classy"
+		"formly"
 	]
 
 app.config ($routeProvider, $locationProvider) ->
@@ -10,3 +11,4 @@ app.config ($routeProvider, $locationProvider) ->
 
 	$routeProvider
 		.when "/", controller: "HomeCtrl", templateUrl: [templateUri, "home.html"].join("/")
+		.when "/login", controller: "LoginCtrl", templateUrl: [templateUri, "login.html"].join("/")

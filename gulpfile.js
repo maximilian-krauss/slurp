@@ -15,7 +15,8 @@ var _             = require('lodash'),
       'angular/angular.min.js',
       'angular-route/angular-route.min.js',
       'lodash/dist/lodash.min.js',
-      'angular-classy/angular-classy.min.js'
+      'angular-classy/angular-classy.min.js',
+      'angular-formly/dist/formly.bootstrap.min.js'
 		],
 		thirdPartyCss	= [
       'normalize.css/normalize.css',
