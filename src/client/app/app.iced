@@ -12,3 +12,6 @@ app.config ($routeProvider, $locationProvider) ->
 	$routeProvider
 		.when "/", controller: "HomeCtrl", templateUrl: [templateUri, "home.html"].join("/")
 		.when "/login", controller: "LoginCtrl", templateUrl: [templateUri, "login.html"].join("/")
+
+
+app.value "directiveTemplateUri", "/static/html/directives/"

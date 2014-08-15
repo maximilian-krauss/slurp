@@ -1,6 +1,6 @@
 angular.module("app").classy.controller
 	name: "LoginCtrl"
-	inject: [ "$scope", "$location", "AuthService" ]
+	inject: [ "$scope", "$location", "AuthService", "NotificationService" ]
 	init: ->
 		@$.form =
 			vm: {}
@@ -23,7 +23,8 @@ angular.module("app").classy.controller
 
 	login: ->
 		@AuthService.login(@$.form.vm)
-			.then (data) ->
+			.then (data) =>
 				@location.path("/")
-			.catch ->
+			.catch =>
+				@NotificationService.error message: "Login failed!"
 				console.log "whoops"
