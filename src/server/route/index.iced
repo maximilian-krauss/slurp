@@ -35,6 +35,11 @@ module.exports.config = (router) ->
 	router.route "#{apiBaseRoute}posts"
 		.post postCtrl.post
 
+	# Favicon fallback, TODO: Remove if added
+	router.route "/favicon.ico"
+		.get (req, res) ->
+			res.status(404).send()
+
 	# Handle default route and let angular do the work
 	router.route "*"
 			.get (req, res) ->
