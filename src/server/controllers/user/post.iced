@@ -23,6 +23,6 @@ module.exports = (req, res) ->
 	if(err)
 		return eRes.send res, 500, err.message
 
-	res.send 201
+	return res.send 201
 
 	eRes.send res, 400

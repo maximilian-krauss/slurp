@@ -24,6 +24,6 @@ angular.module("app").classy.controller
 	login: ->
 		@AuthService.login(@$.form.vm)
 			.then (data) =>
-				@location.path("/")
+				@$location.path("/")
 			.catch =>
 				@NotificationService.error message: "Login failed!"
