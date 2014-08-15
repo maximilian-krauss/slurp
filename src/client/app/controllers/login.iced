@@ -27,4 +27,3 @@ angular.module("app").classy.controller
 				@location.path("/")
 			.catch =>
 				@NotificationService.error message: "Login failed!"
-				console.log "whoops"

@@ -1,2 +1,8 @@
-<div>
+<div class="col-md-6 col-md-offset-3 notification-center">
+
+	<div ng-repeat="notification in notifications" class="alert {{ notification.class }} alert-dismissible" role="alert">
+		<button type="button" class="close" data-dismiss="alert" ng-click="closeNotification(notification.id)"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<strong ng-bind="notification.title"></strong> {{ notification.message }}
+	</div>
+
 </div>

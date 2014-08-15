@@ -4,11 +4,11 @@ angular.module("app").service "NotificationService", ($rootScope, events) ->
 		type: "info"
 		title: ""
 		message: ""
-		timeout: 10
+		timeout: 20
 
 	_broadcastNotification = (args) ->
-		extendedArgs = _.extend defaultArgs, args
-		$rootScope.$emit events.notification.broadcast, extendedArgs
+		extendedArgs = _.extend angular.copy(defaultArgs), args
+		$rootScope.$emit events.notification.broadcast, angular.copy extendedArgs
 
 	service.error = (args) ->
 		_broadcastNotification _.extend type: "error", args
