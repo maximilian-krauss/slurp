@@ -8,6 +8,8 @@ app.config ($routeProvider, $locationProvider) ->
 	templateUri = "/static/html/views"
 	$locationProvider.html5Mode true
 
+	nonActionController = ->
+		return
 
 	$routeProvider
 		.when "/",
@@ -26,6 +28,15 @@ app.config ($routeProvider, $locationProvider) ->
 			templateUrl: [ templateUri, "signup.html" ].join("/")
 			title: "Signup"
 			authRequired: false
+
+		.when "/404",
+			controller: nonActionController
+			templateUrl: [ templateUri, "errors", "http404.html" ].join("/")
+			title: "Page not found"
+			authRequired: false
+
+		.otherwise
+			redirectTo: "/404"
 
 app.config ($httpProvider) ->
 	$httpProvider.defaults.withCredentials = true;
