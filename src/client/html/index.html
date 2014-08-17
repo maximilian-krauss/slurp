@@ -13,7 +13,7 @@
 	<body>
 		<header class="container-fluid" ng-controller="HeaderCtrl" ng-style="heading">
 			<div class="row-fluid">
-				<div class="col-md-6 col-md-offset-3 title">
+				<div class="col-md-6 col-md-offset-3 title" ng-hide="authenticated">
 					<h2><a href="/" ng-bind="title"></a></h2>
 					<h4 ng-bind="description"></h4>
 				</div>
