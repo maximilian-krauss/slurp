@@ -3,6 +3,7 @@ var _             = require('lodash'),
     gulp  				= require('gulp'),
     gutil					= require('gulp-util'),
 		iced					= require('gulp-iced'),
+    coffee        = require('gulp-coffee'),
 		concat				= require('gulp-concat'),
 		clean					= require('gulp-clean'),
     stylus        = require('gulp-stylus'),
@@ -82,7 +83,7 @@ gulp.task('client:compile', function() {
     .pipe(clean());
 
   gulp.src(directories.client.iced.src)
-    .pipe(iced({ bare: false, runtime: 'window' }))
+    .pipe(coffee({ bare: false }))
     .pipe(concat(appjs))
     .pipe(gulp.dest(directories.client.iced.dest));
 
