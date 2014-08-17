@@ -61,10 +61,10 @@ router.use "/static-vendor", express.static path.join(__dirname, "../bower_compo
 router.post "#{route.apiBaseRoute}user/login", (req, res, next) ->
   passport.authenticate("local", (err, user, info) ->
     return next(err)  if err
-    return res.send(400, "Access denied, better luck next time")  unless user
+    return res.status(400).send("Access denied, better luck next time")  unless user
     req.logIn user, (err) ->
       return next(err)  if err
-      res.send 200, "go for it"
+      res.status(200).send "go for it"
 
     return
   ) req, res, next
