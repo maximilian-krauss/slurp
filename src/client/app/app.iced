@@ -10,9 +10,34 @@ app.config ($routeProvider, $locationProvider) ->
 
 
 	$routeProvider
-		.when "/", controller: "HomeCtrl", templateUrl: [templateUri, "home.html"].join("/")
-		.when "/login", controller: "LoginCtrl", templateUrl: [templateUri, "login.html"].join("/")
-		.when "/signup", controller: "SignupCtrl", templateUrl: [ templateUri, "signup.html" ].join("/")
+		.when "/",
+			controller: "HomeCtrl"
+			templateUrl: [templateUri, "home.html"].join("/")
+			authRequired: false
 
+		.when "/login",
+			controller: "LoginCtrl"
+			templateUrl: [templateUri, "login.html"].join("/")
+			title: "Login"
+			authRequired: false
+
+		.when "/signup",
+			controller: "SignupCtrl"
+			templateUrl: [ templateUri, "signup.html" ].join("/")
+			title: "Signup"
+			authRequired: false
+
+app.config ($httpProvider) ->
+	$httpProvider.defaults.withCredentials = true;
 
 app.value "directiveTemplateUri", "/static/html/directives/"
+
+app.run ($rootScope) ->
+	defaultTitle = "slurp:beta"
+	$rootScope.$on "$routeChangeStart", (event, nextRoute, currentRoute) ->
+		#TODO: Verify access
+
+		if nextRoute.title
+			$rootScope.title = "#{nextRoute.title} - #{defaultTitle}"
+		else
+			$rootScope.title = defaultTitle
