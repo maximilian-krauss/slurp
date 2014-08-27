@@ -5,7 +5,7 @@
 ###
 
 module.exports =
-	get: null
+	get: require "./get"
 	post: require "./post"
 	put: null
 	delete: null

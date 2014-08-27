@@ -26,6 +26,7 @@ module.exports.apiBaseRoute = apiBaseRoute
 module.exports.config = (router) ->
 	# User routes
 	router.route "#{apiBaseRoute}user"
+		.get _ensureAuthenticated, userCtrl.get
 		.post _ensureAuthenticatedByToken, userCtrl.post
 
 	# Post routes

@@ -43,4 +43,14 @@ User.methods.comparePassword = (password, cb) ->
 
   return cb null, isMatch
 
+User.methods.getSafeProfile = ->
+	user = this
+	result =
+		id: user.uid
+		username: user.username
+		email: user.email
+		firstName: user.firstName
+		lastName: user.lastName
+	return result
+
 module.exports.model = User
