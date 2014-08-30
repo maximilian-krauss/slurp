@@ -2,6 +2,7 @@ path					= require "path"
 appRoot				= path.dirname require.main.filename
 userCtrl			= require "../controllers/user"
 postCtrl			= require "../controllers/post"
+streamCtrl		= require "../controllers/stream"
 eRes					= require "../error-response"
 envi 					= require "../environment-helper"
 apiBaseRoute	= "/api/0/"
@@ -35,6 +36,10 @@ module.exports.config = (router) ->
 
 	router.route "#{apiBaseRoute}posts"
 		.post postCtrl.post
+
+	# Stream routes
+	router.route "#{apiBaseRoute}stream/:offset"
+		.get streamCtrl.get
 
 	# Favicon fallback, TODO: Remove if added
 	router.route "/favicon.ico"

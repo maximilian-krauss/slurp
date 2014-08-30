@@ -15,6 +15,7 @@ User = new Schema
 	createdAt: 		type: Date, default: Date.now
 	updatedAt: 		type: Date, default: Date.now
 	isActive: 		type: Boolean, default: false
+	lastLogin: 		tpye: Date
 
 User.pre "save", (next) ->
 	user = this
@@ -51,6 +52,7 @@ User.methods.getSafeProfile = ->
 		email: user.email
 		firstName: user.firstName
 		lastName: user.lastName
+		lastLogin: user.lastLogin
 	return result
 
 module.exports.model = User

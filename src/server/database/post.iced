@@ -11,6 +11,7 @@ Post = new Schema
 	rendered: 		type: String
 	type: 				type: String, required: true
 	description: 	type: String
+	hitCount: 		type: Number, default: 0
 
 Post.pre "save", (next) ->
 	post = this
