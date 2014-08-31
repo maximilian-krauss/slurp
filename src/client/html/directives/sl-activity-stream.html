@@ -1,4 +1,22 @@
 <div class="activity-stream-container">
+
+	<div class="activity new">
+		<a href="">
+			<div class="icon">
+				<i class="fa fa-pencil"></i>
+			</div>
+		</a>
+
+		<div class="body">
+			<input class="form-control title" placeholder="New Activity..." ng-model="newActivityVM.title" />
+			<textarea class="form-control content" ng-model="newActivityVM.content"></textarea>
+		</div>
+
+		<div class="footer">
+			<button class="btn btn-success btn-sm">Post</button>
+		</div>
+	</div>
+
 	<sl-activity></sl-activity>
 	<sl-activity></sl-activity>
 </div>
