@@ -45,3 +45,13 @@ describe "Sherlock", ->
 			inspector = new ytInspector content: youtubeShortHttpUrl
 			match = inspector.matches()
 			match.should.equal true
+
+		it "should render youtube posts", (done) ->
+			inspector = new ytInspector content: youtubeLongHttpUrl
+			await inspector.render defer err, post
+			throw err if err
+
+			post.should.have.property "type"
+			post.should.have.property "renderedContent"
+			post.type.should.equal "youtube"
+			done()

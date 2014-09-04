@@ -4,6 +4,7 @@ class Inspector
 	matches: ->
 		@match.test @post.content
 
-	render: (cb) ->
+	render: (done) ->
+		done null, @post
 
 module.exports = Inspector

@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./app/server.js",
     "postinstall": "node ./node_modules/gulp/bin/gulp.js production",
-    "test": "node ./node_modules/mocha/bin/mocha ./app/test/**/*.js"
+    "test": "node ./node_modules/mocha/bin/mocha ./app/test/**/test-*.js"
   },
   "repository": {
     "type": "git",
