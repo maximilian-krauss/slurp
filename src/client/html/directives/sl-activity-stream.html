@@ -8,12 +8,12 @@
 		</a>
 
 		<div class="body">
-			<input class="form-control title" placeholder="New Activity..." ng-model="newActivityVM.title" />
-			<textarea class="form-control content" ng-model="newActivityVM.content"></textarea>
+			<input class="form-control title" placeholder="Title..." ng-model="newActivityVM.title" />
+			<textarea class="form-control content" ng-model="newActivityVM.content" placeholder="Your content..."></textarea>
 		</div>
 
 		<div class="footer">
-			<button class="btn btn-success btn-sm">Post</button>
+			<button class="btn btn-success btn-sm" ng-click="submitPost()">Post</button>
 		</div>
 	</div>
 

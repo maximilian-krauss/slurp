@@ -13,4 +13,15 @@ db					= require "../../database"
 
 module.exports = (req, res) ->
 	await sherlock.render req.body, defer err, post
-	res.status(400).send()
+
+	newPost = new db.postModel
+		title: post.title
+		content: post.content
+		rendered: post.renderedContent
+		type: post.type
+
+	await newPost.save defer err
+	if err
+		return res.status(500).send message: err.message
+
+	return res.status(201).send newPost

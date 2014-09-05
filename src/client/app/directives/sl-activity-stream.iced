@@ -1,4 +1,4 @@
-angular.module("app").directive "slActivityStream", (AuthService, StreamService, directiveTemplateUri) ->
+angular.module("app").directive "slActivityStream", (AuthService, StreamService, PostService, NotificationService, directiveTemplateUri) ->
 	restrict: "E"
 	templateUrl: "#{directiveTemplateUri}sl-activity-stream.html"
 	scope: true,
@@ -7,3 +7,10 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 		scope.newActivityVM =
 			title: ''
 			content: ''
+
+		scope.submitPost = ->
+			PostService.create(scope.newActivityVM)
+				.then (data) ->
+					console.log data
+				.catch (err) ->
+					NotificationService.error message: err.data.message

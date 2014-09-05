@@ -35,7 +35,7 @@ module.exports.config = (router) ->
 		.get postCtrl.get
 
 	router.route "#{apiBaseRoute}posts"
-		.post postCtrl.post
+		.post _ensureAuthenticated, postCtrl.post
 
 	# Stream routes
 	router.route "#{apiBaseRoute}stream/:offset"
