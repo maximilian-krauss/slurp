@@ -7,4 +7,14 @@ db			= require "../../database"
 ###
 
 module.exports = (req, res) ->
-	res.status(400).send()
+	offset = req.params.offset or 0
+	postsPerPage = 10
+
+	await db.postModel
+		.find()
+		.sort("-date")
+		.skip( offset * postsPerPage )
+		.limit(postsPerPage)
+		.exec defer err, posts
+
+	res.status(200).send posts
