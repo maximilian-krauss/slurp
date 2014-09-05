@@ -1,4 +1,9 @@
-angular.module("app").service "StreamService", ->
+angular.module("app").service "StreamService", ($http, endpoints) ->
 	service = {}
 
-	return service 
+	service.fetch = (offset) ->
+		$http
+			url: [ endpoints.stream, offset ].join "/"
+			method: 'GET'
+
+	return service

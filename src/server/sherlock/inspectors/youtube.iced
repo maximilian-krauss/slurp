@@ -10,7 +10,7 @@ class Youtube extends Inspector
 		if not videoId?
 			return done new Error "Could not find video id"
 
-		@post.renderedContent = "<iframe width=\"560\" height=\"315\" src=\"//www.youtube.com/embed/#{videoId}?rel=0\" frameborder=\"0\" allowfullscreen></iframe>"
+		@post.renderedContent = "<div class=\"video-container\"><iframe width=\"560\" height=\"315\" src=\"//www.youtube.com/embed/#{videoId}?rel=0\" frameborder=\"0\" allowfullscreen></iframe></div>"
 		@post.type = "youtube"
 		super done
 

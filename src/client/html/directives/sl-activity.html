@@ -1,18 +1,18 @@
 <div class="activity">
 
-	<a href="/p/4frd332">
+	<a href="/post/{{model.uid}}">
 		<div class="icon">
-			<i class="fa fa-youtube"></i>
+			<i class="fa {{ model.type | activityIconFilter }}"></i>
 		</div>
 	</a>
 
 	<div class="body">
-		<h4>activity.title</h4>
-		<p>Body</p>
+		<h4 ng-bind="model.title"></h4>
+		<div ng-bind-html="renderHtmlBody()"></div>
 	</div>
 
 	<div class="footer">
-		Posted 2 min ago
+		Posted {{ renderDate() }}
 	</div>
 
 </div>
