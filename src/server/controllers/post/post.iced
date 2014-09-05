@@ -5,11 +5,12 @@
 	---
 	Request body:
 		title: string
-		type: number, null
-		description: string
 		content: string
 ###
 
-module.exports = (req, res) ->
+sherlock		= require "../../sherlock"
+db					= require "../../database"
 
-	res.send 400
+module.exports = (req, res) ->
+	await sherlock.render req.body, defer err, post
+	res.status(400).send()
