@@ -6,15 +6,20 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 		scope.authenticated = AuthService.isAuthenticated
 		scope.activities = []
 		scope.newActivityVM =
-			title: ''
-			content: ''
+			title: ""
+			content: ""
 
 		streamOffset = 0
 
+		_resetNewActivityForm = () ->
+			scope.newActivityVM.title = ""
+			scope.newActivityVM.content = ""
+
 		scope.submitPost = ->
 			PostService.create(scope.newActivityVM)
-				.then (data) ->
-					console.log data
+				.then (result) ->
+					scope.activities.splice 0,0, result.data
+					_resetNewActivityForm()
 				.catch (err) ->
 					NotificationService.error message: err.data.message
 

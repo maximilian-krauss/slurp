@@ -1,6 +1,6 @@
 angular.module("app").factory "AuthService", ($rootScope, $http, $q, endpoints, events) ->
 	service =
-		isAuthenticated: false
+		isAuthenticated: window.application.isAuthenticated
 
 	service.login = (authModel) ->
 		deferred = $q.defer()
