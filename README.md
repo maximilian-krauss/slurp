@@ -10,8 +10,8 @@ Hard to describe at this stage of development. The best guess is a self hosted t
 
 
 ## Planned integrations
-* [ ] Youtube
-* [ ] SoundCloud
+* [X] Youtube
+* [X] SoundCloud
 * [ ] Vimeo
 * [ ] Spotify
 * [ ] Twitter

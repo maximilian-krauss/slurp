@@ -5,6 +5,7 @@
 _						= require "lodash"
 marked			= require "marked"
 ytInspector	= require "./inspectors/youtube"
+scInspector	= require "./inspectors/soundcloud"
 
 _renderMarkdown = (postRequestBody, cb) ->
 	marked.setOptions
@@ -27,6 +28,7 @@ _renderMarkdown = (postRequestBody, cb) ->
 module.exports.render = (postRequestBody, cb) ->
 	inspectors = [
 		new ytInspector postRequestBody
+		new scInspector postRequestBody
 	]
 	inspector = _(inspectors).find (inspector) ->
 		inspector.matches()

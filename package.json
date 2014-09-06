@@ -49,6 +49,7 @@
     "multiparty": "^3.3.2",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
+    "request": "^2.42.0",
     "response-time": "^2.0.1",
     "serve-favicon": "^2.0.1"
   }
