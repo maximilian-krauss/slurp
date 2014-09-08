@@ -20,7 +20,7 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 
 		scope.submitPost = ->
 			scope.isSubmitBusy = true
-			
+
 			PostService.create(scope.newActivityVM)
 				.then (result) ->
 					scope.activities.splice 0,0, result.data
@@ -46,9 +46,15 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 				.catch (err) =>
 					console.log err
 
+		_updateStream = () ->
+			if $(window).scrollTop() is ($(document).height() - $(window).height())
+				scope.fetchActivities()
 
 		scope.fetchActivities()
 
 		$(window).scroll =>
-			if $(window).scrollTop() is ($(document).height() - $(window).height())
-				scope.fetchActivities()
+			_updateStream()
+
+		$(window).on
+			"touchmove": () =>
+				_updateStream()
