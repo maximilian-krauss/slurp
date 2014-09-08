@@ -3,6 +3,8 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 	templateUrl: "#{directiveTemplateUri}sl-activity-stream.html"
 	scope: true,
 	link: (scope, elem, attrs) ->
+		scope.isStreamBusy = false
+		scope.noMorePosts = false
 		scope.authenticated = AuthService.isAuthenticated
 		scope.activities = []
 		scope.newActivityVM =
@@ -24,13 +26,24 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 					NotificationService.error message: err.data.message
 
 		scope.fetchActivities = () ->
-			StreamService.fetch(streamOffset)
+			return if scope.isStreamBusy or scope.noMorePosts
+
+			scope.isStreamBusy = true
+			StreamService.fetch(streamOffset++)
 				.then (result) =>
 					_(result.data).each (activity) ->
 						scope.activities.push(activity)
 
+					if result.data.length is 0
+						scope.noMorePosts = true
+
+					scope.isStreamBusy = false
 				.catch (err) =>
 					console.log err
 
 
 		scope.fetchActivities()
+
+		$(window).scroll =>
+			if $(window).scrollTop() is ($(document).height() - $(window).height())
+				scope.fetchActivities()

@@ -19,3 +19,16 @@
 
 	<sl-activity ng-repeat="activity in activities" model="activity"></sl-activity>
 </div>
+
+<div class="row fetch-more">
+
+</div>
+
+<div class="row loading-notification" ng-show="isStreamBusy">
+	<div class="col-md-12">
+		<p>
+			<i class="fa fa-refresh fa-spin"></i>
+			Loading stream, please wait...
+		</p>
+	</div>
+</div>
