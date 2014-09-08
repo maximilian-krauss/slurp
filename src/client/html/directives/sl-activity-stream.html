@@ -3,11 +3,16 @@
 	<div class="activity new" ng-show="authenticated">
 		<a href="">
 			<div class="icon">
-				<i class="fa fa-certificate"></i>
+				<i ng-hide="isSubmitBusy" class="fa fa-certificate"></i>
+				<i ng-show="isSubmitBusy" class="fa fa-refresh fa-spin"></i>
 			</div>
 		</a>
 
-		<div class="body">
+		<div class="body" ng-show="isSubmitBusy">
+			<p>Processing your shit, please wait...</p>
+		</div>
+
+		<div class="body" ng-hide="isSubmitBusy">
 			<input class="form-control title" placeholder="Title..." ng-model="newActivityVM.title" />
 			<textarea class="form-control content" ng-model="newActivityVM.content" placeholder="Your content..."></textarea>
 		</div>
@@ -18,17 +23,15 @@
 	</div>
 
 	<sl-activity ng-repeat="activity in activities" model="activity"></sl-activity>
-</div>
 
-<div class="row fetch-more">
-
-</div>
-
-<div class="row loading-notification" ng-show="isStreamBusy">
-	<div class="col-md-12">
-		<p>
-			<i class="fa fa-refresh fa-spin"></i>
-			Loading stream, please wait...
-		</p>
+	<div class="activity loading" ng-show="isStreamBusy">
+		<div class="icon">
+			<a href="">
+				<i class="fa fa-refresh fa-spin"></i>
+			</a>
+		</div>
+		<div class="body">
+			<h4>Loading stream, please wait...</h4>
+		</div>
 	</div>
 </div>

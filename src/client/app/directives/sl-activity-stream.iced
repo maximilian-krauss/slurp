@@ -4,6 +4,7 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 	scope: true,
 	link: (scope, elem, attrs) ->
 		scope.isStreamBusy = false
+		scope.isSubmitBusy = false
 		scope.noMorePosts = false
 		scope.authenticated = AuthService.isAuthenticated
 		scope.activities = []
@@ -18,12 +19,16 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 			scope.newActivityVM.content = ""
 
 		scope.submitPost = ->
+			scope.isSubmitBusy = true
+			
 			PostService.create(scope.newActivityVM)
 				.then (result) ->
 					scope.activities.splice 0,0, result.data
 					_resetNewActivityForm()
 				.catch (err) ->
 					NotificationService.error message: err.data.message
+				.finally ->
+					scope.isSubmitBusy = false
 
 		scope.fetchActivities = () ->
 			return if scope.isStreamBusy or scope.noMorePosts
