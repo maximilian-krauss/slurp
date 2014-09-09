@@ -15,18 +15,18 @@ app.config ($routeProvider, $locationProvider) ->
 	$routeProvider
 		.when "/",
 			controller: "HomeCtrl"
-			templateUrl: [templateUri, "home.html"].join("/")
+			templateUrl: [ templateUri, "home.html" ].join("/")
 			authRequired: false
 
 		.when "/login",
 			controller: "LoginCtrl"
-			templateUrl: [templateUri, "login.html"].join("/")
+			templateUrl: [ templateUri, "login.html" ].join("/")
 			title: "Login"
 			authRequired: false
 
 		.when "/logout",
 			controller: "LogoutCtrl"
-			templateUrl: [templateUri, "logout.html"].join("/")
+			templateUrl: [ templateUri, "logout.html" ].join("/")
 			title: "Logout"
 			authRequired: true
 
@@ -40,6 +40,12 @@ app.config ($routeProvider, $locationProvider) ->
 			controller: nonActionController
 			templateUrl: [ templateUri, "errors", "http404.html" ].join("/")
 			title: "Page not found"
+			authRequired: false
+
+		.when "/posts/:id",
+			controller: "PostCtrl"
+			templateUrl: [ templateUri, "post.html" ].join("/")
+			title: "Post"
 			authRequired: false
 
 		.otherwise

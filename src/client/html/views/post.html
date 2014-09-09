@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="activity-stream-container">
+
+		<div class="activity loading" ng-show="isBusy">
+			<a href="">
+				<div class="icon">
+					<i class="fa fa-refresh fa-spin"></i>
+				</div>
+			</a>
+
+			<div class="body">
+					<h4>Loading...</h4>
+			</div>
+		</div>
+
+		<sl-activity ng-hide="isBusy" model="model"></sl-activity>
+	</div>
+</div>

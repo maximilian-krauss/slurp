@@ -3,8 +3,13 @@ angular.module("app").service "PostService", ($http, endpoints) ->
 
 	service.create = (postModel) ->
 		$http
-			method: 'POST'
+			method: "POST"
 			url: endpoints.post
 			data: JSON.stringify postModel
+
+	service.get = (id) ->
+		$http
+			method: "GET"
+			url: [ endpoints.post, id ].join("/")
 
 	return service

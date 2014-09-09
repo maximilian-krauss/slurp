@@ -1,6 +1,6 @@
 <div class="activity">
 
-	<a href="/post/{{model.uid}}">
+	<a ng-href="/posts/{{model.uid}}">
 		<div class="icon">
 			<i class="fa {{ model.type | activityIconFilter }}"></i>
 		</div>
@@ -12,7 +12,8 @@
 	</div>
 
 	<div class="footer">
-		Posted {{ renderDate() }}
+		<i class="fa fa-eye"></i> {{ model.hitCount }}
+		<i class="fa fa-clock-o"></i> {{ renderDate() }}
 	</div>
 
 </div>
