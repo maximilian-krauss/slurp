@@ -85,7 +85,7 @@ gulp.task('client:compile', function() {
     .pipe(clean());
 
   gulp.src(directories.client.iced.src)
-    .pipe(coffee({ bare: false }))
+    .pipe(coffee({ bare: false }).on('error', gutil.log))
     .pipe(concat(appjs))
     .pipe(gulp.dest(directories.client.iced.dest));
 

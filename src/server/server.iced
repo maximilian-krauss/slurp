@@ -69,7 +69,7 @@ router.post "#{route.apiBaseRoute}user/login", (req, res, next) ->
     return
   ) req, res, next
 
-router.post "#{route.apiBaseRoute}user/logout", (req, res) ->
+router.get "#{route.apiBaseRoute}user/logout", (req, res) ->
   req.logout()
   res.send "OK"
 

@@ -24,6 +24,12 @@ app.config ($routeProvider, $locationProvider) ->
 			title: "Login"
 			authRequired: false
 
+		.when "/logout",
+			controller: "LogoutCtrl"
+			templateUrl: [templateUri, "logout.html"].join("/")
+			title: "Logout"
+			authRequired: true
+
 		.when "/signup",
 			controller: "SignupCtrl"
 			templateUrl: [ templateUri, "signup.html" ].join("/")

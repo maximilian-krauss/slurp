@@ -14,7 +14,20 @@ angular.module("app").factory "AuthService", ($rootScope, $http, $q, endpoints, 
 			$rootScope.$broadcast events.auth.loggedin
 			deferred.resolve()
 		, (err) =>
-			deferred.reject()
+			deferred.reject err
+
+		deferred.promise
+
+	service.logout = ->
+		deferred = $q.defer()
+		$http
+			url: "#{endpoints.user}/logout"
+			method: "GET"
+		.then =>
+			@isAuthenticated = false
+			deferred.resolve()
+		.catch (err) =>
+			deferred.reject err
 
 		deferred.promise
 
