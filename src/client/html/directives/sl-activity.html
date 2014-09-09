@@ -13,7 +13,7 @@
 
 	<div class="footer">
 		<i class="fa fa-eye"></i> {{ model.hitCount }}
-		<i class="fa fa-clock-o"></i> {{ renderDate() }}
+		<i class="fa fa-clock-o"></i> <time is="relative-time" datetime="{{model.date}}">{{ renderDate() }}</time>
 	</div>
 
 </div>

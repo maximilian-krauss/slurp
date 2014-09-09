@@ -1,6 +1,7 @@
 app = angular.module "app", [
 		"ngRoute"
 		"ngSanitize"
+		"ngAnimate"
 		"classy"
 		"formly"
 	]
@@ -47,16 +48,23 @@ app.config ($routeProvider, $locationProvider) ->
 			templateUrl: [ templateUri, "post.html" ].join("/")
 			title: "Post"
 			authRequired: false
+			resolve:
+				postModel: ($route, PostService) ->
+					return PostService.get $route.current.params.id
 
 		.otherwise
 			redirectTo: "/404"
 
 app.config ($httpProvider) ->
-	$httpProvider.defaults.withCredentials = true;
+	$httpProvider.defaults.withCredentials = true
 
 app.value "directiveTemplateUri", "/static/html/directives/"
 
-app.run ($rootScope) ->
+app.run ($rootScope, $location) ->
+
+	$rootScope.$on "$routeChangeError", (err) ->
+		$location.path "/404"
+
 	defaultTitle = "slurp:beta"
 	$rootScope.$on "$routeChangeStart", (event, nextRoute, currentRoute) ->
 		#TODO: Verify access
