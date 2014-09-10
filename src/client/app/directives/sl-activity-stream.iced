@@ -39,9 +39,7 @@ angular.module("app").directive "slActivityStream", (AuthService, StreamService,
 					_(result.data).each (activity) ->
 						scope.activities.push(activity)
 
-					if result.data.length is 0
-						scope.noMorePosts = true
-
+					scope.noMorePosts = true if result.data.length is 0
 					scope.isStreamBusy = false
 				.catch (err) =>
 					console.log err

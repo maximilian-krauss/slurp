@@ -1,4 +1,4 @@
-<div class="activity">
+<div class="activity" ng-hide="removed">
 
 	<a ng-href="/posts/{{model.uid}}">
 		<div class="icon">
@@ -14,6 +14,13 @@
 	<div class="footer">
 		<i class="fa fa-eye"></i> {{ model.hitCount }}
 		<i class="fa fa-clock-o"></i> <time is="relative-time" datetime="{{model.date}}">{{ renderDate() }}</time>
+
+		<div class="actions">
+			<a ng-show="isAuthenticated" ng-click="delete()" href="" class="action">
+				<i class="fa fa-trash"></i>
+				Delete
+			</a>
+		</div>
 	</div>
 
 </div>

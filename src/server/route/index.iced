@@ -34,6 +34,7 @@ module.exports.config = (router) ->
 	# Post routes
 	router.route "#{apiBaseRoute}posts/:id"
 		.get postCtrl.get
+		.delete _ensureAuthenticated, postCtrl.delete
 
 	router.route "#{apiBaseRoute}posts"
 		.post _ensureAuthenticated, postCtrl.post

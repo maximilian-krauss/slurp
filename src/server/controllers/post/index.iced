@@ -8,4 +8,4 @@ module.exports =
 	get: require "./get"
 	post: require "./post"
 	put: null
-	delete: null
+	delete: require "./delete"

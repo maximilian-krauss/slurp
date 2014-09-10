@@ -12,4 +12,9 @@ angular.module("app").service "PostService", ($http, endpoints) ->
 			method: "GET"
 			url: [ endpoints.post, id ].join("/")
 
+	service.delete = (id) ->
+		$http
+			method: "DELETE"
+			url: [ endpoints.post, id ].join("/")
+
 	return service

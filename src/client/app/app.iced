@@ -1,7 +1,6 @@
 app = angular.module "app", [
 		"ngRoute"
 		"ngSanitize"
-		"ngAnimate"
 		"classy"
 		"formly"
 	]
