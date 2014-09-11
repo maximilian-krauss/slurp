@@ -4,3 +4,4 @@ angular.module("app").classy.controller
 
 	init: ->
 		@$.model = @postModel.data
+		@$rootScope.title = @postModel.data.title
