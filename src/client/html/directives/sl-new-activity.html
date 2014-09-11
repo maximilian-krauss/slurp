@@ -1,0 +1,21 @@
+<div class="activity new" ng-show="authenticated">
+	<a href="">
+		<div class="icon">
+			<i ng-hide="isSubmitBusy" class="fa fa-certificate"></i>
+			<i ng-show="isSubmitBusy" class="fa fa-refresh fa-spin"></i>
+		</div>
+	</a>
+
+	<div class="body" ng-show="isSubmitBusy">
+		<p>Processing your shit, please wait...</p>
+	</div>
+
+	<div class="body" ng-hide="isSubmitBusy">
+		<input class="form-control title" placeholder="Title..." ng-model="newActivityVM.title" />
+		<textarea class="form-control content" ng-model="newActivityVM.content" placeholder="Your content..."></textarea>
+	</div>
+
+	<div class="footer" ng-hide="isSubmitBusy">
+		<button class="btn btn-success btn-sm" ng-click="submitPost()">Post</button>
+	</div>
+</div>

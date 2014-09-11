@@ -7,3 +7,6 @@ angular.module("app").value "events",
 	auth:
 		loggedin: "#{eventBase}.auth.loggedin"
 		unauthorized: "#{eventBase}.auth.unauthorized"
+
+	activity:
+		new: "#{eventBase}.activity.new"
