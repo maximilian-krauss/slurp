@@ -11,10 +11,28 @@
 
 		<div class="row social-media">
 			<div class="col-md-12">
-				<ul>
+				<ul class="social-bar">
 					<li ng-repeat="socialProfile in profile.socialProfiles | orderBy:'order'">
 						<a href="{{ socialProfile | profileSocialUrlFilter }}" target="_blank" class="{{socialProfile.name}}">
 							<i class="fa {{ socialProfile | profileSocialIconFilter }}"></i>
+						</a>
+					</li>
+				</ul>
+
+				<ul class="command-bar">
+					<li ng-show="!authenticated">
+						<a ng-href="/login" title="Login">
+							<i class="fa fa-sign-in"></i>
+						</a>
+					</li>
+					<li ng-show="authenticated">
+						<a ng-href="/logout" title="Sign out">
+							<i class="fa fa-sign-out"></i>
+						</a>
+					</li>
+					<li ng-show="authenticated">
+						<a ng-href="/settings" title="Settings">
+							<i class="fa fa-wrench"></i>
 						</a>
 					</li>
 				</ul>
