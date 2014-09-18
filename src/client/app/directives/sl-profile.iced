@@ -6,7 +6,7 @@ angular.module("app").directive "slProfile", (directiveTemplateUri, UserService,
 	controller: ($scope) ->
 		$scope.profileLoaded = false
 		$scope.showProfile = true
-		$scope.profile = {}
+		$scope.profile = window.application.user
 		$scope.authenticated = AuthService.isAuthenticated
 
 		_init = () ->

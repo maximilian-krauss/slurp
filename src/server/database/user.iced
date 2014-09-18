@@ -50,7 +50,6 @@ User.methods.getSafeProfile = ->
 	result =
 		id: user.uid
 		username: user.username
-		email: user.email
 		firstName: user.firstName
 		lastName: user.lastName
 		lastLogin: user.lastLogin
