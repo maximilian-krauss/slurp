@@ -1,10 +1,10 @@
-<div class="row sl-profile">
+<div class="row sl-profile" ng-show="showProfile">
 
 	<div class="col-md-2 picture"></div>
 	<div class="col-md-10">
 		<div class="row">
 			<div class="col-md-12">
-				<h4>Maximilian Krauß</h4>
+				<h4 ng-bind="profile.firstName + ' ' + profile.lastName"></h4>
 				<p class="slug">Fullstack software developer based in Berlin</p>
 			</div>
 		</div>
@@ -12,9 +12,9 @@
 		<div class="row social-media">
 			<div class="col-md-12">
 				<ul>
-					<li>
-						<a href="https://twitter.com/DonnieBerlin" target="_blank" class="twitter">
-							<i class="fa fa-twitter"></i>
+					<li ng-repeat="socialProfile in profile.socialProfiles | orderBy:'order'">
+						<a href="{{ socialProfile | profileSocialUrlFilter }}" target="_blank" class="{{socialProfile.name}}">
+							<i class="fa {{ socialProfile | profileSocialIconFilter }}"></i>
 						</a>
 					</li>
 				</ul>
