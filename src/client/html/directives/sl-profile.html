@@ -1,11 +1,11 @@
 <div class="row sl-profile" ng-show="showProfile">
 
-	<div class="col-md-2 picture"></div>
+	<div class="col-md-2 picture" ng-style="profileStyle"></div>
 	<div class="col-md-10">
 		<div class="row">
 			<div class="col-md-12">
 				<h4 ng-bind="profile.firstName + ' ' + profile.lastName"></h4>
-				<p class="slug">Fullstack software developer based in Berlin</p>
+				<p class="slug" ng-bind="profile.slug"></p>
 			</div>
 		</div>
 

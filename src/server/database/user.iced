@@ -6,17 +6,19 @@ bcrypt 			= require "bcrypt"
 idgen			  = require "./id-generator"
 
 User = new Schema
-	uid:  					type: String, unique: true
-	username: 			type: String, required: true, unique: true
-	email: 					type: String, required: true, unique: true
-	password: 			type: String, required: true
-	firstName: 			type: String, default: ''
-	lastName: 			type: String, default: ''
-	createdAt: 			type: Date, default: Date.now
-	updatedAt: 			type: Date, default: Date.now
-	isActive: 			type: Boolean, default: false
-	lastLogin: 			type: Date
-	socialProfiles: type: Array, default: []
+	uid:  						type: String, unique: true
+	username: 				type: String, required: true, unique: true
+	email: 						type: String, required: true, unique: true
+	password: 				type: String, required: true
+	firstName: 				type: String, default: ""
+	lastName: 				type: String, default: ""
+	createdAt: 				type: Date, default: Date.now
+	updatedAt: 				type: Date, default: Date.now
+	isActive: 				type: Boolean, default: false
+	lastLogin: 				type: Date
+	socialProfiles: 	type: Array, default: []
+	profileImageUrl: 	type: String, default: ""
+	slug: 						type: String, default: ""
 
 User.pre "save", (next) ->
 	user = this
@@ -53,7 +55,10 @@ User.methods.getSafeProfile = ->
 		firstName: user.firstName
 		lastName: user.lastName
 		lastLogin: user.lastLogin
-		socialProfiles: user.socialProfiles
+		socialProfiles: user.socialProfiles,
+		profileImageUrl: user.profileImageUrl,
+		slug: user.slug
+		
 	return result
 
 module.exports.model = User
