@@ -44,7 +44,7 @@ module.exports.config = (router) ->
 		.get streamCtrl.get
 
 	# Initial configuration
-	router.route "/application-config.js"
+	router.route "/:buildId/application-config.js"
 		.get configCtrl
 
 	# Favicon fallback, TODO: Remove if added

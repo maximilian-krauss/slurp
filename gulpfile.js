@@ -77,6 +77,7 @@ gulp.task('server:compile', function() {
 // Client
 gulp.task('client:compile', function() {
   var hash = idgen(),
+      appConfig = '/' + hash + '/application-config.js'
       appjs = 'app-' + hash + '.js',
       vendorjs = 'vendor-' + hash + '.js',
       appcss = 'app-' + hash + '.css',
@@ -106,7 +107,7 @@ gulp.task('client:compile', function() {
   gulp.src(directories.client.html.src)
     .pipe(htmlreplace({
       'css': [ '/static/css/' + vendorcss, '/static/css/' + appcss ],
-      'js': [ '/static/js/' + vendorjs, '/static/js/' + appjs ]
+      'js': [ appConfig, '/static/js/' + vendorjs, '/static/js/' + appjs ]
     }))
     .pipe(htmlmin({ collapseWhitespace: true, removeComments: true }))
     .pipe(gulp.dest(directories.client.html.dest));

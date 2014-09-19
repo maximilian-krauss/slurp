@@ -36,6 +36,7 @@ module.exports = (req, res) ->
 	if err
 		return res.status(500).send()
 
+	result.buildId = req.params.buildId
 	result.title = config.title
 	result.description = config.description
 	result.teaserImageUrl = config.teaserImageUrl
