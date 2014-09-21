@@ -64,7 +64,7 @@ app.run ($rootScope, $location) ->
 	$rootScope.$on "$routeChangeError", (err) ->
 		$location.path "/404"
 
-	defaultTitle = "slurp:beta"
+	defaultTitle = window.application?.title
 	$rootScope.$on "$routeChangeStart", (event, nextRoute, currentRoute) ->
 		#TODO: Verify access
 
