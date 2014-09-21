@@ -9,3 +9,4 @@ module.exports =
 	post: require "./post"
 	put: null
 	delete: require "./delete"
+	trackClick: require "./track-click"

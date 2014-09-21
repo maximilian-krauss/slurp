@@ -17,4 +17,9 @@ angular.module("app").service "PostService", ($http, endpoints) ->
 			method: "DELETE"
 			url: [ endpoints.post, id ].join("/")
 
+	service.trackClick = (id) ->
+		$http
+			method: "POST"
+			url: [ endpoints.post, id, "track-click" ].join("/")
+
 	return service
