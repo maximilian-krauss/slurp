@@ -19,6 +19,7 @@ module.exports = (req, res) ->
 		content: post.content
 		rendered: post.renderedContent
 		type: post.type
+		customPayload: post.customPayload
 
 	await newPost.save defer err
 	if err

@@ -7,6 +7,7 @@ angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostS
 	link: (scope, elem) ->
 		scope.removed = false
 		scope.isAuthenticated = AuthService.isAuthenticated
+		scope.isLink = scope.model.type is "link"
 
 		scope.renderHtmlBody = () ->
     	return $sce.trustAsHtml(scope.model.rendered);

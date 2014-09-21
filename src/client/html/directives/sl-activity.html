@@ -7,7 +7,10 @@
 	</a>
 
 	<div class="body">
-		<h4 ng-bind="model.title"></h4>
+		<h4 class="title" ng-hide="isLink" ng-bind="model.title"></h4>
+		<h4 class="title" ng-show="isLink">
+			<a href="{{ model.customPayload }}" ng-bind-html="model.title + '&#8594;'" target="_blank"></a>
+		</h4>
 		<div ng-bind-html="renderHtmlBody()"></div>
 	</div>
 

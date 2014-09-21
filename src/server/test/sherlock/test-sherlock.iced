@@ -10,6 +10,14 @@ soundcloudPost =
 markdownPost =
 	content: "This is **just** text"
 
+linkedPost =
+	title: "http://www.google.com"
+	content: "this link is awesome"
+
+brokenLinkPost =
+	title: "http://foo.bar"
+	content: "This is a broken one"
+
 describe "Sherlock", ->
 
 	it "should have found sherlock", ->
@@ -44,3 +52,27 @@ describe "Sherlock", ->
 		post.renderedContent.should.equal "<p>This is <strong>just</strong> text</p>\n"
 
 		done()
+
+	describe "LinkInspector", ->
+
+		it "should detect links in titles", (done) ->
+			await sherlock.render linkedPost, defer err, post
+			throw err if err
+
+			post.should.have.property "type"
+			post.type.should.equal "link"
+
+			post.title.should.equal "Google"
+
+			done()
+
+		it "should not break if a url is unreachable", (done) ->
+			await sherlock.render brokenLinkPost, defer err, post
+			throw err if err
+
+			post.should.have.property "type"
+			post.type.should.equal "link"
+
+			post.title.should.equal "http://foo.bar"
+
+			done()

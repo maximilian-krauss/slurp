@@ -7,4 +7,5 @@ angular.module("app").filter "activityIconFilter", ->
 		switch type
 			when "youtube" then "fa-youtube"
 			when "soundcloud" then "fa-music"
+			when "link" then "fa-external-link"
 			else "fa-pencil"
