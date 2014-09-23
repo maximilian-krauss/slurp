@@ -21,6 +21,8 @@ var _             = require('lodash'),
       'lodash/dist/lodash.min.js',
       'angular-classy/angular-classy.min.js',
       'angular-formly/dist/formly.bootstrap.min.js',
+      'angular-bootstrap/ui-bootstrap.min.js',
+      'angular-bootstrap/ui-bootstrap-tpls.min.js',
       'moment/min/moment.min.js'
 		],
 		thirdPartyCss	= [

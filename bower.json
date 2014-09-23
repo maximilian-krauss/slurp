@@ -16,17 +16,18 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.23",
+    "angular": "~1.2.25",
     "jquery": "~2.1.1",
     "lodash": "~2.4.1",
-    "angular-route": "~1.2.23",
+    "angular-route": "~1.2.25",
     "angular-classy": "~0.4.2",
     "font-awesome": "~4.2.0",
     "normalize.css": "~3.0.1",
     "bootstrap": "~3.2.0",
-    "angular-formly": "~0.0.14",
-    "moment": "~2.8.2",
-    "angular-sanitize": "~1.2.23",
-    "angular-animate": "~1.2.23"
+    "angular-formly": "~0.0.16",
+    "angular-sanitize": "~1.2.25",
+    "angular-animate": "~1.2.25",
+    "moment": "~2.8.3",
+    "angular-bootstrap": "~0.11.0"
   }
 }
