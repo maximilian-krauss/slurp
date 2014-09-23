@@ -3,6 +3,7 @@ app = angular.module "app", [
 		"ngSanitize"
 		"classy"
 		"formly"
+		"ui.bootstrap"
 	]
 
 app.config ($routeProvider, $locationProvider) ->
@@ -58,6 +59,7 @@ app.config ($httpProvider) ->
 	$httpProvider.defaults.withCredentials = true
 
 app.value "directiveTemplateUri", "/static/html/directives/"
+app.value "dialogTemplateUri", "/static/html/dialogs/"
 
 app.run ($rootScope, $location) ->
 

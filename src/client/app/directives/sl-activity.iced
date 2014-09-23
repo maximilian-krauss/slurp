@@ -1,4 +1,4 @@
-angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostService, AuthService) ->
+angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostService, AuthService, DialogService) ->
 	restrict: "E"
 	replace: true
 	templateUrl: "#{directiveTemplateUri}sl-activity.html"
@@ -16,9 +16,13 @@ angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostS
 			return moment(scope.model.date).fromNow()
 
 		scope.delete = ->
-			PostService.delete scope.model.uid
-				.then () ->
-					scope.removed = true
+			DialogService.confirm
+				title: "Confirm deletion"
+				content: "Are you sure that you want to delete this post?"
+			.then ->
+				PostService.delete scope.model.uid
+					.then ->
+						scope.removed = true
 
 		scope.trackClick = ->
 			PostService.trackClick scope.model.uid
