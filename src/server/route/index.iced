@@ -4,6 +4,7 @@ userCtrl			= require "../controllers/user"
 postCtrl			= require "../controllers/post"
 streamCtrl		= require "../controllers/stream"
 configCtrl		= require "../controllers/app-config"
+settingsCtrl	= require "../controllers/settings"
 eRes					= require "../error-response"
 envi 					= require "../environment-helper"
 apiBaseRoute	= "/api/0/"
@@ -49,6 +50,16 @@ module.exports.config = (router) ->
 	# Initial configuration
 	router.route "/:buildId/application-config.js"
 		.get configCtrl
+
+	# Settings/Application
+	router.route "#{apiBaseRoute}settings/application"
+		.get _ensureAuthenticated, settingsCtrl.application.get
+		.put _ensureAuthenticated, settingsCtrl.application.put
+
+	# Settings/Profile
+	router.route "#{apiBaseRoute}settings/profile"
+		.get _ensureAuthenticated, settingsCtrl.profile.get
+		.put _ensureAuthenticated, settingsCtrl.profile.put
 
 	# Favicon fallback, TODO: Remove if added
 	router.route "/favicon.ico"

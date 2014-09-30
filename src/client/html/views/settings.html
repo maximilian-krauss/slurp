@@ -1,0 +1,24 @@
+<div class="settings">
+	<h3 class="title">slurp settings</h3>
+
+	<tabset justified="false">
+		<tab>
+			<tab-heading>
+				<i class="fa fa-cogs"></i>
+				Site
+			</tab-heading>
+			<div ng-controller="SettingsSiteCtrl" class="tab-content">
+				<ng-include src="siteTabUri"></ng-include>
+			</div>
+		</tab>
+		<tab>
+			<tab-heading>
+				<i class="fa fa-user"></i>
+				Profile
+			</tab-heading>
+			<div ng-controller="SettingsProfileCtrl" class="tab-content">
+				<ng-include src="profileTabUri"></ng-include>
+			</div>
+		</tab>
+	</tabset>
+</div>

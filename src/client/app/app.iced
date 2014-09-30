@@ -37,6 +37,12 @@ app.config ($routeProvider, $locationProvider) ->
 			title: "Signup"
 			authRequired: false
 
+		.when "/settings",
+			controller: "SettingsCtrl"
+			templateUrl: [ templateUri, "settings.html" ].join("/")
+			title: "Settings"
+			authRequired: true
+
 		.when "/404",
 			controller: nonActionController
 			templateUrl: [ templateUri, "errors", "http404.html" ].join("/")
@@ -60,6 +66,7 @@ app.config ($httpProvider) ->
 
 app.value "directiveTemplateUri", "/static/html/directives/"
 app.value "dialogTemplateUri", "/static/html/dialogs/"
+app.value "tabsTemplateUri", "/static/html/tabs/"
 
 app.run ($rootScope, $location) ->
 

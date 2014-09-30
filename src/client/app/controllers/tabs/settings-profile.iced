@@ -1,3 +1,3 @@
 angular.module("app").classy.controller
-	name: "HomeCtrl"
+	name: "SettingsProfileCtrl"
 	inject: [ "$scope" ]
