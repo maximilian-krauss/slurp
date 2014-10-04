@@ -1,7 +1,7 @@
 angular.module("app").service "NotificationService", ($rootScope, events) ->
 	service = {}
 	defaultArgs =
-		type: "info"
+		type: ""
 		title: ""
 		message: ""
 		timeout: 20
@@ -13,7 +13,7 @@ angular.module("app").service "NotificationService", ($rootScope, events) ->
 	service.error = (args) ->
 		_broadcastNotification _.extend type: "error", args
 
-	service.warn = (args) ->
-		_broadcastNotification _.extend type: "warning", args
+	service.success = (args) ->
+		_broadcastNotification _.extend type: "success", args
 
 	return service

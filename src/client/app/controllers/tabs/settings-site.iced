@@ -1,6 +1,6 @@
 angular.module("app").classy.controller
 	name: "SettingsSiteCtrl"
-	inject: [ "$scope", "SettingsService" ]
+	inject: [ "$scope", "SettingsService", "NotificationService" ]
 	init: ->
 		@$.form =
 			vm: {}
@@ -33,7 +33,7 @@ angular.module("app").classy.controller
 
 	_putChanges: (data) ->
 		@SettingsService.putApplication(data)
-			.then ->
-				console.log "data updated"
-			.catch ->
+			.then =>
+				@NotificationService.success message: "Settings updated!", timeout: 2
+			.catch =>
 				console.log "failed to update data"

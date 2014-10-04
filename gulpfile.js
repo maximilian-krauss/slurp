@@ -23,12 +23,15 @@ var _             = require('lodash'),
       'angular-formly/dist/formly.bootstrap.min.js',
       'angular-bootstrap/ui-bootstrap.min.js',
       'angular-bootstrap/ui-bootstrap-tpls.min.js',
-      'moment/min/moment.min.js'
+      'moment/min/moment.min.js',
+      'alertify.js/lib/alertify.min.js'
 		],
 		thirdPartyCss	= [
       'normalize.css/normalize.css',
       'bootstrap/dist/css/bootstrap.min.css',
-      'bootstrap/dist/css/bootstrap-theme.min.css'
+      'bootstrap/dist/css/bootstrap-theme.min.css',
+      'alertify.js/themes/alertify.core.css',
+      'alertify.js/themes/alertify.bootstrap.css'
 		],
 		directories		= {
       clean: {
