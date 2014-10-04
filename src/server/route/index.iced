@@ -13,7 +13,7 @@ _ensureAuthenticated = (req, res, next) ->
 	if(req.isAuthenticated())
 		next()
 	else
-		res.send 401, "Unauthorized"
+		res.status(401).send message: "Unauthorized"
 
 _ensureAuthenticatedByToken = (req, res, next) ->
 	storedToken = envi.server.token
