@@ -30,10 +30,20 @@ angular.module("app").classy.controller
 			.then (result) =>
 				@$.form.vm = result.data
 				@$.$watch "form.vm", _.debounce(@_putChanges, 2000), true
+			.catch (result) =>
+				@NotificationService.error
+					title: "Failed to fetch application data"
+					message: result.data.message
+					timeout: 20
 
-	_putChanges: (data) ->
+	_putChanges: (data, oldOne) ->
+		return if _(data).isEqual oldOne
+
 		@SettingsService.putApplication(data)
 			.then =>
 				@NotificationService.success message: "Settings updated!", timeout: 2
-			.catch =>
-				console.log "failed to update data"
+			.catch (result) =>
+				@NotificationService.error
+					title: "Failed to update settings"
+					message: result.data.message
+					timeout: 10
