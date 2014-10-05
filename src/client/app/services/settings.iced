@@ -19,7 +19,7 @@ angular.module("app").service "SettingsService", ($http, endpoints) ->
 
 	service.putProfile = (model) ->
 		$http
-			method: "GET"
+			method: "PUT"
 			url: [ endpoints.settings, "profile" ].join("/")
 			data: JSON.stringify(model)
 
