@@ -55,7 +55,7 @@ module.exports = (req, res) ->
 		else
 			return res.status(400).send message: "No filename provided"
 
-	form.on "err", (err) ->
+	form.on "error", (err) ->
 		return res.status(400).send message: err.message
 
 	form.parse req
