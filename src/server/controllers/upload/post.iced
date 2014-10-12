@@ -28,16 +28,22 @@ _randomizeFilename = (filename) ->
 	"#{hash}#{extension}"
 
 module.exports = (req, res) ->
+	console.log "upload started"
+	console.log envi.azure
 	blobService = azure.createBlobService()
+	console.log "blob service created", blobService
 	form = new multiparty.Form()
 
 	form.on "part", (part) ->
 		if part.filename
+			console.log "part", part
 			filename = [ uploadPath, _randomizeFilename part.filename ].join "/"
 			size = part.byteCount
+			console.log filename, size
 
 			await blobService.createBlockBlobFromStream envi.azure.container, filename, part, size, defer err
 			if err
+				console.log "blob error", err
 				return res.status(400).send message: err.message
 
 			uploadModel = new db.uploadModel
@@ -47,15 +53,19 @@ module.exports = (req, res) ->
 
 			await uploadModel.save defer err
 			if err
+				console.log "uploadModel save error"
 				return res.status(400).send message: err.message
 
 
 			return res.status(201).send uploadModel
 
 		else
+			console.log "filename is not set"
 			return res.status(400).send message: "No filename provided"
 
 	form.on "error", (err) ->
+		console.log "form.error", err
 		return res.status(400).send message: err.message
 
 	form.parse req
+	console.log "form.parse called"
