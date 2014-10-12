@@ -94,6 +94,10 @@ activity-sub-content = #888
 .activity .video-container iframe
 	width: 100%
 	height: 100%
+	position: absolute
+
+.activity .image-container img
+	width: 100%
 
 // New Activity block
 .activity.new input.title
@@ -106,5 +110,42 @@ activity-sub-content = #888
 	transition: none
 	padding-left: 0
 
+.activity.new button span
+	color: #fff
+
 .activity.new textarea.content
+	resize: none
 	min-height: 100px
+
+.activity.new textarea.content.upload
+	border-bottom: none
+	border-bottom-left-radius: 0
+	border-bottom-right-radius: 0
+
+.activity.new .upload-progress
+	color: #fff
+
+.activity.new .upload-progress i
+	margin-right: 6px
+	color: #fff
+
+.activity.new .upload-info
+	margin-bottom: 4px
+	padding: 6px 4px 0 6px
+
+	border: 1px solid #cacaca
+	border-radius: 0 0 5px 5px
+	border-top-style: dashed
+
+	color: activity-sub-content
+
+.activity.new .image-actions
+	float: right
+	margin-right: 6px
+
+.activity.new .image-actions a:hover
+	text-decoration: none!important
+
+.activity.new .image-actions a.delete,
+.activity.new .image-actions a.delete i
+	color: #B20000

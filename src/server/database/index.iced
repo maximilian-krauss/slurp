@@ -24,3 +24,4 @@ mdb.on "close", ->
 module.exports.userModel = mongoose.model "User", require("./user").model
 module.exports.postModel = mongoose.model "Post", require("./post").model
 module.exports.applicationModel = mongoose.model "Application", require("./application").model
+module.exports.uploadModel = mongoose.model "Upload", require("./upload").model

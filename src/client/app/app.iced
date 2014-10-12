@@ -4,6 +4,7 @@ app = angular.module "app", [
 		"classy"
 		"formly"
 		"ui.bootstrap"
+		"angularFileUpload"
 	]
 
 app.config ($routeProvider, $locationProvider) ->

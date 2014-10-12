@@ -1,11 +1,27 @@
-angular.module("app").service "PostService", ($http, endpoints) ->
+angular.module("app").service "PostService", ($q, $http, endpoints, UploadService) ->
 	service = {}
 
-	service.create = (postModel) ->
+	service.create = (args) ->
+		deferred = $q.defer()
+
 		$http
 			method: "POST"
 			url: endpoints.post
-			data: JSON.stringify postModel
+			data: JSON.stringify args.post
+		.then (result) =>
+			if args.upload
+				UploadService.assign args.upload.uid, result.data.uid, "post"
+				.then =>
+					deferred.resolve result
+				.catch (err) =>
+					deferred.reject err
+			else
+				deferred.resolve result
+
+		.catch (err) =>
+			deferred.reject err
+
+		return deferred.promise
 
 	service.get = (id) ->
 		$http

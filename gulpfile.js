@@ -17,14 +17,14 @@ var _             = require('lodash'),
       'angular/angular.min.js',
       'angular-route/angular-route.min.js',
       'angular-sanitize/angular-sanitize.min.js',
-      'angular-animate/angular-animate.min.js',
       'lodash/dist/lodash.min.js',
       'angular-classy/angular-classy.min.js',
       'angular-formly/dist/formly.bootstrap.min.js',
       'angular-bootstrap/ui-bootstrap.min.js',
       'angular-bootstrap/ui-bootstrap-tpls.min.js',
       'moment/min/moment.min.js',
-      'alertify.js/lib/alertify.min.js'
+      'alertify.js/lib/alertify.min.js',
+      'ng-file-upload/angular-file-upload.min.js'
 		],
 		thirdPartyCss	= [
       'normalize.css/normalize.css',

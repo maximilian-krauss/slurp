@@ -5,6 +5,7 @@ postCtrl			= require "../controllers/post"
 streamCtrl		= require "../controllers/stream"
 configCtrl		= require "../controllers/app-config"
 settingsCtrl	= require "../controllers/settings"
+uploadCtrl		= require "../controllers/upload"
 eRes					= require "../error-response"
 envi 					= require "../environment-helper"
 apiBaseRoute	= "/api/0/"
@@ -60,6 +61,16 @@ module.exports.config = (router) ->
 	router.route "#{apiBaseRoute}settings/profile"
 		.get _ensureAuthenticated, settingsCtrl.profile.get
 		.put _ensureAuthenticated, settingsCtrl.profile.put
+
+	# Upload
+	router.route "#{apiBaseRoute}upload"
+		.post _ensureAuthenticated, uploadCtrl.post
+
+	router.route "#{apiBaseRoute}upload/:id"
+		.delete _ensureAuthenticated, uploadCtrl.delete
+
+	router.route "#{apiBaseRoute}upload/:id/assign"
+		.post _ensureAuthenticated, uploadCtrl.assign
 
 	# Favicon fallback, TODO: Remove if added
 	router.route "/favicon.ico"

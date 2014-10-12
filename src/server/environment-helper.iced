@@ -5,8 +5,8 @@ module.exports =
 		password: process.env["MONGO_DB_PASSWORD"]
 
 	azure:
-		account: process.env["AZURE_ACCOUNT_NAME"]
-		key: process.env["AZURE_STORAGE_KEY"]
+		account: process.env["AZURE_STORAGE_ACCOUNT"]
+		key: process.env["AZURE_STORAGE_ACCESS_KEY"]
 		container: process.env["AZURE_CONTAINER_NAME"]
 
 	server:

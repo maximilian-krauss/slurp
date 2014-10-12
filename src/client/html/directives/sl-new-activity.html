@@ -12,10 +12,37 @@
 
 	<div class="body" ng-hide="isSubmitBusy">
 		<input class="form-control title" placeholder="Title..." ng-model="newActivityVM.title" />
-		<textarea class="form-control content" ng-model="newActivityVM.content" placeholder="Your content..."></textarea>
+		<textarea class="form-control content"
+							ng-model="newActivityVM.content"
+							ng-file-drop="onFileSelect($files)"
+							ng-class="{ upload: upload != null }"
+							placeholder="Your content...">
+		</textarea>
+
+		<div class="upload-info" ng-show="upload != null">
+			<p>
+				Attached image:
+				<a href="{{ upload.blobUri }}" target="_blank" ng-bind="upload.filename"></a>
+				<span class="image-actions">
+					<a href="#" class="delete" ng-click="revokeUpload()">
+						<i class="fa fa-trash"></i>
+						Delete
+					</a>
+				</span>
+			</p>
+		</div>
+
 	</div>
 
 	<div class="footer" ng-hide="isSubmitBusy">
-		<button class="btn btn-success btn-sm" ng-click="submitPost()">Post</button>
+		<button class="btn btn-success btn-sm" ng-click="submitPost()" ng-disabled="isUploadBusy">
+			<span ng-hide="isUploadBusy">
+				Post
+			</span>
+			<span class="upload-progress" ng-show="isUploadBusy">
+				<i class="fa fa-circle-o-notch fa-spin"></i>
+				Uploading, please wait...
+			</span>
+		</button>
 	</div>
 </div>

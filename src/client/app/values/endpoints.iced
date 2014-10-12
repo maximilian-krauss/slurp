@@ -5,3 +5,4 @@ angular.module("app").value "endpoints",
 	post: "#{apiBase}posts"
 	stream: "#{apiBase}stream"
 	settings: "#{apiBase}settings"
+	upload: "#{apiBase}upload"

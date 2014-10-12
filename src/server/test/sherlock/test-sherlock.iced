@@ -18,6 +18,10 @@ brokenLinkPost =
 	title: "http://foo.bar"
 	content: "This is a broken one"
 
+imagePost =
+	title: "ignore me"
+	content: "https://www.imghost.com/img.png"
+
 describe "Sherlock", ->
 
 	it "should have found sherlock", ->
@@ -39,6 +43,14 @@ describe "Sherlock", ->
 
 		post.should.have.property "type"
 		post.type.should.equal "soundcloud"
+		done()
+
+	it "should detect and render image contents", (done) ->
+		await sherlock.render imagePost, defer err, post
+		throw err if err
+
+		post.should.have.property "type"
+		post.type.should.equal "image"
 		done()
 
 	it "should detect and render markdown contents", (done) ->
