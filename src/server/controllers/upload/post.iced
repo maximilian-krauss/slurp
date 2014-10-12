@@ -31,7 +31,6 @@ module.exports = (req, res) ->
 	console.log "upload started"
 	console.log envi.azure
 	blobService = azure.createBlobService()
-	console.log "blob service created", blobService
 	form = new multiparty.Form()
 
 	form.on "part", (part) ->
@@ -41,6 +40,8 @@ module.exports = (req, res) ->
 			size = part.byteCount
 			console.log filename, size
 
+			console.log "starting upload"
+			console.log "container:", envi.azure.container
 			await blobService.createBlockBlobFromStream envi.azure.container, filename, part, size, defer err
 			if err
 				console.log "blob error", err
