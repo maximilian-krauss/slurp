@@ -27,60 +27,14 @@ _randomizeFilename = (filename) ->
 	hash = crypto.createHash("sha1").update(seed).digest("hex")
 	"#{hash}#{extension}"
 
+_removeUpload = (path, cb) ->
+	await fs.unlink path, defer err
+	if err
+		console.error "Failed to remove temp file: #{path}"
+
+	cb null
+
 module.exports = (req, res) ->
-	console.log "upload started"
-	console.log envi.azure
-	###
-	blobService = azure.createBlobService()
-	form = new multiparty.Form()
-	uploadModel = null
-
-	form.on "part", (part) ->
-		if part.filename?
-			console.log "part", part
-			filename = [ uploadPath, _randomizeFilename part.filename ].join "/"
-			size = part.byteCount
-			console.log filename, size
-
-			console.log "starting upload"
-			console.log "container:", envi.azure.container
-			await blobService.createBlockBlobFromStream envi.azure.container, filename, part, size, defer err
-			if err
-				console.log "blob error", err
-				return res.status(400).send message: err.message
-
-			uploadModel = new db.uploadModel
-				blobPath: filename
-				blobUri: _toFullAzureUrl filename
-				filename: part.filename
-
-			await uploadModel.save defer err
-			if err
-				console.log "uploadModel save error"
-				return res.status(400).send message: err.message
-
-
-			#return res.status(201).send uploadModel
-			part.resume()
-
-		else
-			console.log "filename is not set"
-			part.resume();
-
-
-	form.on "error", (err) ->
-		console.log "form.error", err
-		return res.status(400).send message: err.message
-
-	form.on "close", ->
-		console.log "form.close called"
-		console.log uploadModel
-		res.send uploadModel
-
-	form.parse req
-	console.log "form.parse called"
-	###
-
 	form = new multiparty.Form()
 	await form.parse req, defer err, fields, files
 	if err
@@ -90,15 +44,19 @@ module.exports = (req, res) ->
 		return res.status(400).send message: "No file provided"
 
 	file = _(files.file).first()
-	console.log file
 	blobPath = [ uploadPath, _randomizeFilename file.originalFilename ].join "/"
 	blobService = azure.createBlobService()
-	console.log blobService
-
 	stream = fs.createReadStream file.path
+
 	await blobService.createBlockBlobFromStream envi.azure.container, blobPath, stream, file.size, defer err
 	if err
 		return res.status(400).send message: err.message
+
+	stream.close()
+
+	await _removeUpload file.path, defer err
+	if err
+		return res.status(500).send err.message
 
 	uploadModel = new db.uploadModel
 		blobPath: blobPath
