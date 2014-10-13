@@ -30,11 +30,13 @@ _randomizeFilename = (filename) ->
 module.exports = (req, res) ->
 	console.log "upload started"
 	console.log envi.azure
+	###
 	blobService = azure.createBlobService()
 	form = new multiparty.Form()
+	uploadModel = null
 
 	form.on "part", (part) ->
-		if part.filename
+		if part.filename?
 			console.log "part", part
 			filename = [ uploadPath, _randomizeFilename part.filename ].join "/"
 			size = part.byteCount
@@ -58,15 +60,53 @@ module.exports = (req, res) ->
 				return res.status(400).send message: err.message
 
 
-			return res.status(201).send uploadModel
+			#return res.status(201).send uploadModel
+			part.resume()
 
 		else
 			console.log "filename is not set"
-			return res.status(400).send message: "No filename provided"
+			part.resume();
+
 
 	form.on "error", (err) ->
 		console.log "form.error", err
 		return res.status(400).send message: err.message
 
+	form.on "close", ->
+		console.log "form.close called"
+		console.log uploadModel
+		res.send uploadModel
+
 	form.parse req
 	console.log "form.parse called"
+	###
+
+	form = new multiparty.Form()
+	await form.parse req, defer err, fields, files
+	if err
+		return res.status(400).send message: err.message
+
+	if files?.file?.length is 0
+		return res.status(400).send message: "No file provided"
+
+	file = _(files.file).first()
+	console.log file
+	blobPath = [ uploadPath, _randomizeFilename file.originalFilename ].join "/"
+	blobService = azure.createBlobService()
+	console.log blobService
+
+	stream = fs.createReadStream file.path
+	await blobService.createBlockBlobFromStream envi.azure.container, blobPath, stream, file.size, defer err
+	if err
+		return res.status(400).send message: err.message
+
+	uploadModel = new db.uploadModel
+		blobPath: blobPath
+		blobUri: _toFullAzureUrl blobPath
+		filename: file.originalFilename
+
+	await uploadModel.save defer err
+	if err
+		return res.status(400).send message: err.message
+
+	res.status(201).send uploadModel
