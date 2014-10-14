@@ -15,6 +15,9 @@ _rerenderPost = (post, cb) ->
 		title: if post.type is "link" then post.customPayload else post.title
 
 	await sherlock.render body, defer err, renderedPost
+	if err
+		return cb err
+
 	post.title = renderedPost.title
 	post.rendered = renderedPost.renderedContent
 	post.type = renderedPost.type
