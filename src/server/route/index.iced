@@ -34,6 +34,9 @@ module.exports.config = (router) ->
 		.post _ensureAuthenticatedByToken, userCtrl.post
 
 	# Post routes
+	router.route "#{apiBaseRoute}posts/rerender"
+		.post _ensureAuthenticated, postCtrl.rerender
+
 	router.route "#{apiBaseRoute}posts/:id"
 		.get postCtrl.get
 		.delete _ensureAuthenticated, postCtrl.delete

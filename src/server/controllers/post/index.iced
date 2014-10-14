@@ -10,3 +10,4 @@ module.exports =
 	put: null
 	delete: require "./delete"
 	trackClick: require "./track-click"
+	rerender: require "./rerender"
