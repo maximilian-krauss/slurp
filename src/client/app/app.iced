@@ -9,7 +9,9 @@ app = angular.module "app", [
 
 app.config ($routeProvider, $locationProvider) ->
 	templateUri = "/static/html/views"
-	$locationProvider.html5Mode true
+	$locationProvider.html5Mode
+		enabled: true
+		requireBase: false
 
 	nonActionController = ->
 		return
