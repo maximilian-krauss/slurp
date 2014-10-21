@@ -1,2 +1,20 @@
-<formly-form result="form.vm" fields="form.fields" options="form.options">
-</formly-form>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Options</h3>
+	</div>
+	<div class="panel-body">
+		<p>
+			<button class="btn btn-default" ng-click="changePassword()">Change password</button>
+		</p>
+	</div>
+</div>
+
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">Profile details</h3>
+	</div>
+	<div class="panel-body">
+		<formly-form result="form.vm" fields="form.fields" options="form.options">
+		</formly-form>
+	</div>
+</div>

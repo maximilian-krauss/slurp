@@ -1,6 +1,6 @@
 angular.module("app").classy.controller
 	name: "SettingsProfileCtrl"
-	inject: [ "$scope", "SettingsService", "NotificationService" ]
+	inject: [ "$scope", "SettingsService", "NotificationService", "dialogTemplateUri", "$modal" ]
 	init: ->
 		@$.form =
 			vm: {}
@@ -56,3 +56,20 @@ angular.module("app").classy.controller
 					title: "Failed to update user profile"
 					message: err.data.message
 					timeout: 10
+
+	changePassword: ->
+		instance = @$modal.open
+			controller: "ChangePasswordDialogCtrl"
+			templateUrl: "#{@dialogTemplateUri}change-password.html"
+			backdrop: "static"
+			keyboard: false
+
+		instance.result
+			.then =>
+				@NotificationService.success message: "Password updated!", timeout: 5
+			.catch (err) =>
+				if err
+					@NotificationService.error
+						title: "Failed to update password"
+						message: err.data.message
+						timeout: 10

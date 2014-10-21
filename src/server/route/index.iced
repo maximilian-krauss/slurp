@@ -33,6 +33,9 @@ module.exports.config = (router) ->
 		.get userCtrl.get
 		.post _ensureAuthenticatedByToken, userCtrl.post
 
+	router.route "#{apiBaseRoute}user/change-password"
+		.post _ensureAuthenticated, userCtrl.changePassword
+
 	# Post routes
 	router.route "#{apiBaseRoute}posts/rerender"
 		.post _ensureAuthenticated, postCtrl.rerender
