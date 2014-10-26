@@ -16,7 +16,7 @@
 
 	<div class="footer">
 		<i class="fa fa-eye"></i> {{ model.hitCount }} views
-		<i class="fa fa-clock-o"></i> <time is="relative-time" datetime="{{model.date}}">{{ renderDate() }}</time>
+		<i class="fa fa-clock-o"></i> <time is="relative-time" datetime="{{model.date}}" title="{{model.date | date:'yyyy-MM-dd HH:MM'}}">{{ renderDate() }}</time>
 
 		<div class="actions">
 			<a ng-show="isAuthenticated" ng-click="delete()" href="" class="action">
