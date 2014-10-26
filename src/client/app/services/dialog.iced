@@ -32,8 +32,10 @@ angular.module("app").service "DialogService", ($modal, dialogTemplateUri) ->
 			resolve:
 				options: -> mergedArgs
 
-		mergedArgs.promise.then instance.close, instance.dismiss
-		
-		return mergedArgs.promise
+		mergedArgs.promise
+			.then(instance.close)
+			.catch(instance.dismiss)
+
+		return instance.result
 
 	return service

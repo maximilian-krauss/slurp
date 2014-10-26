@@ -38,4 +38,12 @@ angular.module("app").service "PostService", ($q, $http, endpoints, UploadServic
 			method: "POST"
 			url: [ endpoints.post, id, "track-click" ].join("/")
 
+	service.rerender = (ids) ->
+		ids = ids or []
+
+		$http
+				method: "POST"
+				url: [ endpoints.post, "rerender" ].join "/"
+				data: JSON.stringify postUids: ids
+
 	return service

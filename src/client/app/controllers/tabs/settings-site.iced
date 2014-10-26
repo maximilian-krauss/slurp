@@ -1,6 +1,6 @@
 angular.module("app").classy.controller
 	name: "SettingsSiteCtrl"
-	inject: [ "$scope", "SettingsService", "NotificationService" ]
+	inject: [ "$scope", "SettingsService", "NotificationService", "DialogService", "PostService" ]
 	init: ->
 		@$.form =
 			vm: {}
@@ -47,3 +47,16 @@ angular.module("app").classy.controller
 					title: "Failed to update settings"
 					message: result.data.message
 					timeout: 10
+
+	rerenderAllPosts: ->
+		@DialogService.blockUi
+			title: "Rerendering"
+			message: "Rerendering all posts, this could take a bit ..."
+			promise: @PostService.rerender [ ]
+		.then =>
+			@NotificationService.success message: "All posts rerendered!"
+		.catch (err) =>
+			@NotificationService.error
+				title: "Failed to rerender posts"
+				message: err.data.message
+				timeout: 10

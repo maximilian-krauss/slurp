@@ -1,4 +1,4 @@
-angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostService, AuthService, DialogService) ->
+angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostService, AuthService, DialogService, NotificationService) ->
 	restrict: "E"
 	replace: true
 	templateUrl: "#{directiveTemplateUri}sl-activity.html"
@@ -26,3 +26,18 @@ angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostS
 
 		scope.trackClick = ->
 			PostService.trackClick scope.model.uid
+
+		scope.rerender = ->
+			postUid = scope.model.uid
+			DialogService.blockUi
+				title: "Rendering..."
+				message: "Please wait while your post is being rendered..."
+				promise: PostService.rerender [ postUid ]
+			.then (result) =>
+				scope.model = _(result.data).find uid: postUid
+				NotificationService.success message: "Post rerendered!"
+			.catch (err) =>
+				NotificationService.error
+					title: "Failed to rerender post"
+					message: err.data.message
+					timeout: 10
