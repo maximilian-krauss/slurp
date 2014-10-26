@@ -27,7 +27,7 @@ _ensureAuthenticatedByToken = (req, res, next) ->
 
 module.exports.apiBaseRoute = apiBaseRoute
 
-module.exports.config = (router) ->
+module.exports.config = (router, io) ->
 	# User routes
 	router.route "#{apiBaseRoute}user"
 		.get userCtrl.get
@@ -48,7 +48,7 @@ module.exports.config = (router) ->
 		.post postCtrl.trackClick
 
 	router.route "#{apiBaseRoute}posts"
-		.post _ensureAuthenticated, postCtrl.post
+		.post _ensureAuthenticated, postCtrl.post(io)
 
 	# Stream routes
 	router.route "#{apiBaseRoute}stream/:offset"

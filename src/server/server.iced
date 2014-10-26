@@ -76,7 +76,7 @@ router.get "#{route.apiBaseRoute}user/logout", (req, res) ->
   res.send "OK"
 
 
-app.use route.config router
+app.use route.config router, io
 
 server.listen app.get("port"), =>
   console.log "slurp up and running on 127.0.0.1:#{app.get "port"}"
