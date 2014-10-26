@@ -42,7 +42,7 @@ module.exports.config = (router, io) ->
 
 	router.route "#{apiBaseRoute}posts/:id"
 		.get postCtrl.get
-		.delete _ensureAuthenticated, postCtrl.delete
+		.delete _ensureAuthenticated, postCtrl.delete(io)
 
 	router.route "#{apiBaseRoute}posts/:id/track-click"
 		.post postCtrl.trackClick

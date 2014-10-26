@@ -21,8 +21,10 @@ angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostS
 				content: "Are you sure that you want to delete this post?"
 			.then ->
 				PostService.delete scope.model.uid
-					.then ->
-						scope.removed = true
+					.catch (err) ->
+						NotificationService.error
+							title: "Failed to remove post"
+							message: err.data.message
 
 		scope.trackClick = ->
 			PostService.trackClick scope.model.uid

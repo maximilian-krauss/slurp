@@ -26,6 +26,7 @@ angular.module("app").directive "slActivityStream", (StreamService, Notification
 		$scope.$on "$destroy", ->
 			_updateStream = angular.noop;
 			RealtimeService.removeListener socketEvents.post.created, _postCreated
+			RealtimeService.removeListener socketEvents.post.deleted, _postDeleted
 
 		_updateStream = ->
 			if $(window).scrollTop() is ($(document).height() - $(window).height())
@@ -36,7 +37,12 @@ angular.module("app").directive "slActivityStream", (StreamService, Notification
 				$scope.$apply ->
 					$scope.activities.splice 0, 0, data
 
+		_postDeleted = (uid) ->
+			$scope.$apply ->
+				_($scope.activities).remove (post) -> post.uid is uid
+
 		RealtimeService.on socketEvents.post.created, _postCreated
+		RealtimeService.on socketEvents.post.deleted, _postDeleted
 
 		$scope.fetchActivities()
 

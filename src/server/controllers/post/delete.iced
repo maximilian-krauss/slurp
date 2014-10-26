@@ -21,13 +21,16 @@ _removeAssociatedUpload = (postUid, cb) ->
 
 	return cb err # Looks akward
 
-module.exports = (req, res) ->
-	await _removeAssociatedUpload req.params.id, defer err
-	if err
-		return res.status(400).send message: err.message
+module.exports = (io) ->
+	return (req, res) ->
+		await _removeAssociatedUpload req.params.id, defer err
+		if err
+			return res.status(400).send message: err.message
 
-	await db.postModel.remove uid: req.params.id, defer err
-	if err
-		return res.status(400).send()
+		await db.postModel.remove uid: req.params.id, defer err
+		if err
+			return res.status(400).send()
 
-	res.status(200).send()
+		io.emit "socket:post:deleted", req.params.id
+
+		res.status(200).send()
