@@ -17,7 +17,7 @@ favicon				= require "serve-favicon"
 envi          = require "./environment-helper"
 app						= express()
 server        = require("http").Server(app)
-io            = require("socket.io")(server)
+io            = require("socket.io")(server, transports: [ "polling" ])
 ioHandler     = require("./socket-handler")(io)
 
 # Authentication config
