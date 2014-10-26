@@ -45,13 +45,14 @@
     "marked": "^0.3.2",
     "mocha": "^1.21.4",
     "moment": "^2.8.3",
-    "mongoose": "^3.6.13",
+    "mongoose": "3.6.13",
     "morgan": "^1.2.3",
     "multiparty": "^3.3.2",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
     "request": "^2.42.0",
     "response-time": "^2.0.1",
-    "serve-favicon": "^2.0.1"
+    "serve-favicon": "^2.0.1",
+    "socket.io": "^1.1.0"
   }
 }

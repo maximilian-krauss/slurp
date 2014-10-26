@@ -7,7 +7,6 @@ session				= require "express-session"
 passport			= require "passport"
 LocalStrategy	= require("passport-local").Strategy
 logger				= require "morgan"
-http					= require "http"
 path					= require "path"
 dotenv				= require("dotenv").load()
 route					= require "./route"
@@ -17,6 +16,9 @@ pkg						= require "../package"
 favicon				= require "serve-favicon"
 envi          = require "./environment-helper"
 app						= express()
+server        = require("http").Server(app)
+io            = require("socket.io")(server)
+ioHandler     = require("./socket-handler")(io)
 
 # Authentication config
 passport.serializeUser (user, done) ->
@@ -76,5 +78,5 @@ router.get "#{route.apiBaseRoute}user/logout", (req, res) ->
 
 app.use route.config router
 
-http.createServer(app).listen app.get("port"), ->
+server.listen app.get("port"), =>
   console.log "slurp up and running on 127.0.0.1:#{app.get "port"}"
