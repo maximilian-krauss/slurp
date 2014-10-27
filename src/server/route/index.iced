@@ -41,11 +41,11 @@ module.exports.config = (router, io) ->
 		.post _ensureAuthenticated, postCtrl.rerender
 
 	router.route "#{apiBaseRoute}posts/:id"
-		.get postCtrl.get
+		.get postCtrl.get(io)
 		.delete _ensureAuthenticated, postCtrl.delete(io)
 
 	router.route "#{apiBaseRoute}posts/:id/track-click"
-		.post postCtrl.trackClick
+		.post postCtrl.trackClick(io)
 
 	router.route "#{apiBaseRoute}posts"
 		.post _ensureAuthenticated, postCtrl.post(io)

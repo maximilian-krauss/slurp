@@ -3,9 +3,10 @@
 	Auth: cookie
 ###
 
-db		= require "../../database"
-envi 	= require "../../environment-helper"
-azure	= require "azure"
+db						= require "../../database"
+envi 					= require "../../environment-helper"
+azure					= require "azure"
+socketEvents	= require "../../socket-events"
 
 _removeAssociatedUpload = (postUid, cb) ->
 	await db.uploadModel.findOne referenceType: "post", referenceUid: postUid, defer err, upload
@@ -19,7 +20,7 @@ _removeAssociatedUpload = (postUid, cb) ->
 
 	await db.uploadModel.remove uid: upload.uid, defer err
 
-	return cb err # Looks akward
+	return cb err # Looks awkward
 
 module.exports = (io) ->
 	return (req, res) ->
@@ -31,6 +32,6 @@ module.exports = (io) ->
 		if err
 			return res.status(400).send()
 
-		io.emit "socket:post:deleted", req.params.id
+		io.emit socketEvents.post.deleted, req.params.id
 
 		res.status(200).send()

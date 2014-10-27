@@ -4,14 +4,18 @@
 	Auth: none
 ###
 
-db		= require "../../database"
+db						= require "../../database"
+socketEvents	= require "../../socket-events"
 
-module.exports = (req, res) ->
-	conditions = uid: req.params.id
-	update = $inc: hitCount: 1
+module.exports = (io) ->
+	return (req, res) ->
+		conditions = uid: req.params.id
+		update = $inc: hitCount: 1
 
-	await db.postModel.update conditions, update, defer err
-	if err
-		return res.status(500).send()
+		await db.postModel.update conditions, update, defer err
+		if err
+			return res.status(500).send()
 
-	res.status(200).send()
+		io.emit socketEvents.post.hitcountIncreased, uid: req.params.id
+
+		res.status(200).send()

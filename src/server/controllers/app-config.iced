@@ -4,6 +4,7 @@
 ###
 
 db		= require "../database"
+sEv 	= require "../socket-events"
 
 _fetchConfigFromDB = (cb) ->
 	await db.applicationModel.findOne defer err, config
@@ -41,6 +42,7 @@ module.exports = (req, res) ->
 	result.description = config.description
 	result.teaserImageUrl = config.teaserImageUrl
 	result.user = user
+	result.socketEvents = sEv
 
 	res.set "Content-Type", "text/javascript"
 	res.send "window.application = JSON.parse('#{JSON.stringify(result)}');"

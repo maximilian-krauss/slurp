@@ -10,6 +10,7 @@
 
 sherlock		= require "../../sherlock"
 db					= require "../../database"
+socketEvents	= require "../../socket-events"
 
 module.exports = (io) ->
 	return (req, res) ->
@@ -26,6 +27,6 @@ module.exports = (io) ->
 		if err
 			return res.status(500).send message: err.message
 
-		io.emit "socket:post:created", newPost
+		io.emit socketEvents.post.created, newPost
 
 		return res.status(201).send newPost

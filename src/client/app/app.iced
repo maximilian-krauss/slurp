@@ -70,6 +70,7 @@ app.config ($httpProvider) ->
 app.value "directiveTemplateUri", "/static/html/directives/"
 app.value "dialogTemplateUri", "/static/html/dialogs/"
 app.value "tabsTemplateUri", "/static/html/tabs/"
+app.value "socketEvents", application.socketEvents
 
 app.run ($rootScope, $location) ->
 
