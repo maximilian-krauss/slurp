@@ -24,7 +24,7 @@ angular.module("app").directive "slActivityStream", (StreamService, Notification
 					console.log err
 
 		$scope.$on "$destroy", ->
-			_updateStream = angular.noop;
+			$(window).off "scroll", _updateStream
 			RealtimeService.removeListener socketEvents.post.created, _postCreated
 			RealtimeService.removeListener socketEvents.post.deleted, _postDeleted
 
@@ -46,5 +46,4 @@ angular.module("app").directive "slActivityStream", (StreamService, Notification
 
 		$scope.fetchActivities()
 
-		$(window).scroll =>
-			_updateStream()
+		$(window).on "scroll", _updateStream
