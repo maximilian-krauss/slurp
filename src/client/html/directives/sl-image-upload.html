@@ -1,0 +1,9 @@
+<div class="sl-image-upload" ng-file-drop="onFileSelect($files)" ng-class="{ 'image-selected':imageSelected }" ng-style="style">
+	<p ng-hide="imageSelected || uploadBusy">Drag and Drop</p>
+	<p ng-show="imageSelected && !uploadBusy">
+		<a href="#" ng-click="deleteUpload()">Delete upload</a>
+	</p>
+	<p ng-show="uploadBusy">
+		Uploading...
+	</p>
+</div>

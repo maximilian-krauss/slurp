@@ -34,7 +34,27 @@ _removeUpload = (path, cb) ->
 
 	cb null
 
+_cleanBlob = (cb) ->
+	await db.uploadModel.find referenceUid: null, defer err, oldUploads
+	return cb err if err or oldUploads.lenth is 0
+
+	blobService = azure.createBlobService()
+
+	for upload in oldUploads
+		await blobService.deleteBlob envi.azure.container, upload.blobPath, defer blobError
+		await db.uploadModel.remove uid: upload.uid, defer mongoError
+
+		return cb mongoError if mongoError
+
+	cb null
+
 module.exports = (req, res) ->
+
+	#Cleanup obsolete uploads
+	await _cleanBlob defer cleanupError
+	if cleanupError
+		console.log "Failed to cleanup obsolete images: #{cleanupError.message}"
+
 	form = new multiparty.Form()
 	await form.parse req, defer err, fields, files
 	if err

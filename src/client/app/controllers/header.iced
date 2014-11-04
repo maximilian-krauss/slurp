@@ -5,4 +5,4 @@ angular.module("app").classy.controller
 		@$.title = window.application.title
 		@$.description = window.application.description
 		@$.heading =
-			"background-image": "url('#{window.application.teaserImageUrl}')"
+			"background-image": "url('#{window.application.teaserImage.url}')"
