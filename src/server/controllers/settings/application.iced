@@ -20,7 +20,6 @@ module.exports.put = (req, res) ->
 
 	model.title = req.body.title
 	model.description = req.body.description
-	model.teaserImageUrl = req.body.teaserImageUrl
 	model.teaserImage = req.body.teaserImage
 
 	await model.save defer err

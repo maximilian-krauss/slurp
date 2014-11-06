@@ -19,11 +19,6 @@ angular.module("app").classy.controller
 					label: "Description"
 					required: true
 				}
-				{
-					key: "teaserImageUrl"
-					type: "text"
-					label: "Teaser Image Url"
-				}
 			]
 
 		@SettingsService.getApplication()

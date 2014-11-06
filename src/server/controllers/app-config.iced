@@ -40,7 +40,6 @@ module.exports = (req, res) ->
 	result.buildId = req.params.buildId
 	result.title = config.title
 	result.description = config.description
-	result.teaserImageUrl = config.teaserImageUrl
 	result.teaserImage = config.teaserImage
 	result.user = user
 	result.socketEvents = sEv
