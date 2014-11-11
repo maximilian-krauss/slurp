@@ -8,7 +8,7 @@ angular.module("app").directive "slProfile", (directiveTemplateUri, UserService,
 		$scope.showProfile = true
 		$scope.profile = window.application.user
 		$scope.profileStyle =
-			"background-image": "url('#{window.application.user.profileImageUrl}')"
+			"background-image": "url('#{window.application.user.profileImage.url}')"
 		$scope.authenticated = AuthService.isAuthenticated
 
 		_init = () ->
@@ -17,7 +17,7 @@ angular.module("app").directive "slProfile", (directiveTemplateUri, UserService,
 					$scope.profile = result.data
 					$scope.profileLoaded = true
 
-					$scope.profileStyle["background-image"] = "url('#{result.data.profileImageUrl}')"
+					$scope.profileStyle["background-image"] = "url('#{result.data.profileImage.url}')"
 				.catch () ->
 					$scope.showProfile = false
 

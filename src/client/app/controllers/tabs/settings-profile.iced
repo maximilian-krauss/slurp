@@ -24,11 +24,6 @@ angular.module("app").classy.controller
 					label: "Lastname"
 				}
 				{
-					key: "profileImageUrl"
-					type: "text"
-					label: "Profile image URL"
-				}
-				{
 					key: "slug"
 					type: "text"
 					label: "Slug (Markdown)"

@@ -5,10 +5,16 @@ angular.module("app").directive "slImageUpload", (UploadService, DialogService, 
 	scope:
 		imageModel: "="
 		heightRatio: "@?"
+		referenceToken: "@"
+		referenceUid: "="
+		height: "=?"
 
 	link: (scope, elem, attrs) ->
-		ratio = attrs.heightRatio or 4
-		$(elem).height $(elem).width() / ratio
+		if attrs.height
+			$(elem).height attrs.height
+		else
+			ratio = attrs.heightRatio or 4
+			$(elem).height $(elem).width() / ratio
 
 	controller: ($scope) ->
 		$scope.style = {}
@@ -33,7 +39,7 @@ angular.module("app").directive "slImageUpload", (UploadService, DialogService, 
 
 			UploadService.upload _($files).first()
 			.then (result) =>
-				UploadService.assign result.data.uid, "app", "application"
+				UploadService.assign result.data.uid, $scope.referenceUid, $scope.referenceToken
 				.then =>
 					$scope.imageModel =
 						url: result.data.blobUri

@@ -10,7 +10,6 @@ angular.module("app").directive "slActivity", ($sce, directiveTemplateUri, PostS
 		$scope.isLink = $scope.model.type is "link"
 
 		_hitcountIncreased = (data) ->
-			console.log data
 			return if data.uid isnt $scope.model.uid
 			$scope.$apply ->
 				$scope.model.hitCount++;

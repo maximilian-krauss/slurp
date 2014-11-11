@@ -17,7 +17,9 @@ User = new Schema
 	isActive: 				type: Boolean, default: false
 	lastLogin: 				type: Date
 	socialProfiles: 	type: Array, default: []
-	profileImageUrl: 	type: String, default: ""
+	profileImage:
+		uploadUid: 			type: String, default: ""
+		url: 						type: String, default: ""
 	slug: 						type: String, default: ""
 
 User.pre "save", (next) ->
@@ -55,10 +57,11 @@ User.methods.getSafeProfile = ->
 		firstName: user.firstName
 		lastName: user.lastName
 		lastLogin: user.lastLogin
-		socialProfiles: user.socialProfiles,
-		profileImageUrl: user.profileImageUrl,
+		socialProfiles: user.socialProfiles
+		profileImageUrl: user.profileImageUrl
+		profileImage: user.profileImage
 		slug: user.slug
-		
+
 	return result
 
 module.exports.model = User

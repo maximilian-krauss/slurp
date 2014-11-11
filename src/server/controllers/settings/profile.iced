@@ -26,7 +26,7 @@ module.exports.put = (req, res) ->
 
 	user.firstName = req.body.firstName
 	user.lastName = req.body.lastName
-	user.profileImageUrl = req.body.profileImageUrl
+	user.profileImage = req.body.profileImage
 	user.slug = req.body.slug
 
 	await user.save defer err

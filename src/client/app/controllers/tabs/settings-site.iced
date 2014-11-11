@@ -2,6 +2,7 @@ angular.module("app").classy.controller
 	name: "SettingsSiteCtrl"
 	inject: [ "$scope", "SettingsService", "NotificationService", "DialogService", "PostService" ]
 	init: ->
+		@$.appUid = "app-ignore"
 		@$.form =
 			vm: {}
 			options:
