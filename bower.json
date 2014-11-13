@@ -30,7 +30,8 @@
     "moment": "~2.8.3",
     "angular-bootstrap": "~0.11.0",
     "alertify.js": "~0.3.11",
-    "ng-file-upload": "~1.6.12"
+    "ng-file-upload": "~1.6.12",
+    "marked": "~0.3.2"
   },
   "resolutions": {
     "angular": "~1.3"

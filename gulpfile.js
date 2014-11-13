@@ -24,7 +24,8 @@ var _             = require('lodash'),
       'angular-bootstrap/ui-bootstrap-tpls.min.js',
       'moment/min/moment.min.js',
       'alertify.js/lib/alertify.min.js',
-      'ng-file-upload/angular-file-upload.min.js'
+      'ng-file-upload/angular-file-upload.min.js',
+      'marked/lib/marked.js'
 		],
 		thirdPartyCss	= [
       'normalize.css/normalize.css',
